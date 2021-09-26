@@ -3,7 +3,7 @@ package com.mealmentor.enterprise.dto;
 import lombok.Data;
 
 public @Data
-class Recipe {
-    private String name;
-    private int calories;
+class DailyCounter {
+    private String day;
+    private int calorieCount;
 }

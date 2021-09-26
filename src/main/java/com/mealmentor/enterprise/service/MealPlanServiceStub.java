@@ -1,6 +1,7 @@
 package com.mealmentor.enterprise.service;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
+import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,10 @@ public class MealPlanServiceStub implements IMealPlanService {
         Recipe recipe = new Recipe();
         recipe.setName("Chicken Burger");
         return recipe;
+    }
+
+    @Override
+    public DailyCounter saveDailyCounter(DailyCounter dailyCounter) {
+        return dailyCounter;
     }
 }
