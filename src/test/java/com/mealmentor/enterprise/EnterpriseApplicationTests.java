@@ -1,9 +1,7 @@
 package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
-import com.mealmentor.enterprise.dto.DailyCounter;
-import com.mealmentor.enterprise.dto.MealItem;
-import com.mealmentor.enterprise.dto.Recipe;
+import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
 import org.junit.jupiter.api.Test;
@@ -11,9 +9,12 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
@@ -24,6 +25,11 @@ class EnterpriseApplicationTests {
     private Recipe recipe = new Recipe();
     private MealItem mealItem = new MealItem();
     private DailyCounter dailyCounter = new DailyCounter();
+    private Ingredient ingredient = new Ingredient();
+    private RecipeIngredient recipeIngredient = new RecipeIngredient();
+    private List<ShoppingItem> shoppingItemList = new ArrayList<>();
+    private List<MealItem> mealItemList = new ArrayList<>();
+    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @MockBean
     private IMealItemDAO mealItemDAO;
@@ -128,4 +134,80 @@ class EnterpriseApplicationTests {
         assertEquals(370, addedDailyCounter.getCalorieCount());
     }
 
+    @Test
+    void createShoppingList_validateReturnShoppingList() throws Exception {
+        givenUserSavedMeals();
+        whenUserGeneratesShoppingList();
+        thenDisplayList();
+    }
+
+    private void givenUserSavedMeals() {
+
+        recipe.setName("Pizza");
+
+        ingredient.setName("dough");
+        ingredient.setUnit("grams");
+        recipeIngredient.setIngredient(ingredient);
+        recipeIngredient.setQuantity(500);
+        recipeIngredientList.add(recipeIngredient);
+
+        ingredient = new Ingredient();
+        ingredient.setName("cheese");
+        ingredient.setUnit("grams");
+
+        recipeIngredient = new RecipeIngredient();
+        recipeIngredient.setIngredient(ingredient);
+        recipeIngredient.setQuantity(50);
+        recipeIngredientList.add(recipeIngredient);
+
+        recipe.setRecipeIngredientList(recipeIngredientList);
+        mealItem.setRecipe(recipe);
+        mealItemList.add(mealItem);
+
+        recipe = new Recipe();
+        recipe.setName("Lasagna");
+
+        recipeIngredient = new RecipeIngredient();
+        recipeIngredient.setIngredient(ingredient);
+        recipeIngredient.setQuantity(100);
+        recipeIngredientList = new ArrayList<>();
+        recipeIngredientList.add(recipeIngredient);
+
+        recipe.setRecipeIngredientList(recipeIngredientList);
+        mealItem = new MealItem();
+        mealItem.setRecipe(recipe);
+        mealItemList.add(mealItem);
+
+    }
+
+    private void whenUserGeneratesShoppingList() {
+        for (MealItem mi : mealItemList) {
+            ShoppingItem shoppingItem = new ShoppingItem();
+            List<RecipeIngredient> recipeIngredientList = mi.getRecipe().getRecipeIngredientList();
+            for (RecipeIngredient ri : recipeIngredientList) {
+                shoppingItem.setIngredient(ri.getIngredient());
+                shoppingItem.setQuantity(ri.getQuantity());
+                shoppingItemList.add(shoppingItem);
+            }
+        }
+    }
+
+    private void thenDisplayList() {
+        assertEquals(3, shoppingItemList.size());
+    }
+
+    @Test
+    void createEmptyShoppingList_validateReturnNothing() throws Exception {
+        givenUserNeverSavedMeals();
+        whenUserGeneratesShoppingList();
+        thenDisplayNothing();
+    }
+
+    private void givenUserNeverSavedMeals() {
+
+    }
+
+    private void thenDisplayNothing() {
+        assertEquals(0, shoppingItemList.size());
+    }
 }
