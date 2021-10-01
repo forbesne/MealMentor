@@ -20,4 +20,12 @@ public class MealMentorController {
         return "start";
     }
 
+
+    @RequestMapping (value = "/searchReceipe")
+    public String searchReceipe (Recipe Recipe)
+    {
+        Recipe.setName("Chicken Burger");
+        return "start";
+    }
+
 }
