@@ -4,6 +4,7 @@ import com.mealmentor.enterprise.dao.IMealItemDAO;
 import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
+import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -45,11 +46,12 @@ class EnterpriseApplicationTests {
         thenCreateNewMealItemRecordAndReturnIt();
     }
 
-    private void givenRecipeDataAreAvailable() {
+    @Test
+    private void givenRecipeDataAreAvailable() throws Exception {
         Mockito.when(mealItemDAO.save(mealItem)).thenReturn(mealItem);
         mealPlanService = new MealPlanServiceStub(mealItemDAO);
     }
-
+    @Test
     private void whenUserAddsANewMealItemAndSaves() {
         mealItem.setMealtime("dinner");
         mealItem.setDay("Monday");
@@ -57,23 +59,24 @@ class EnterpriseApplicationTests {
         mealItem.setRecipe(recipe);
     }
 
-    private void thenCreateNewMealItemRecordAndReturnIt() {
+    @Test
+    private void thenCreateNewMealItemRecordAndReturnIt() throws Exception {
         MealItem addedMealItem = mealPlanService.save(mealItem);
         assertEquals(mealItem, addedMealItem);
         verify(mealItemDAO, atLeastOnce()).save(mealItem);
     }
 
     @Test
-    void searchRecipesByName_returnsRecipesContainingChicken()  {
+    void searchRecipesByName_returnsRecipesContainingChicken() throws Exception {
         givenRecipeDataAreAvailable();
         whenUserSearchesChicken();
         thenReturnRecipesContainingChicken();
     }
-
+    @Test
     private void whenUserSearchesChicken() {
         recipe = mealPlanService.searchByName("chicken");
     }
-
+    @Test
     private void thenReturnRecipesContainingChicken() {
         String name = recipe.getName();
         assertEquals("Chicken Burger", name);
