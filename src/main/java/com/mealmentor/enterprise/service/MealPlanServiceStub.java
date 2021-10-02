@@ -9,17 +9,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class MealPlanServiceStub implements IMealPlanService {
 
+    @Autowired
     private IMealItemDAO mealItemDAO;
 
-    public MealPlanServiceStub() {
-
-    }
-
     public MealPlanServiceStub(IMealItemDAO mealItemDAO) {
+
         this.mealItemDAO = mealItemDAO;
     }
     @Override
-    public MealItem save(MealItem mealItem) {
+    public MealItem save(MealItem mealItem) throws Exception {
         return mealItemDAO.save(mealItem);
     }
 
