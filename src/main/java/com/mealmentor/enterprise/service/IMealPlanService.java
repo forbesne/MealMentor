@@ -15,6 +15,8 @@ public interface IMealPlanService {
 
     MealItem save(MealItem mealItem) throws Exception;
 
+    Recipe searchByName(String chicken);
+
     void delete(int id) throws Exception;
 
     List<MealItem> fetchAll();

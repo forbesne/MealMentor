@@ -35,7 +35,12 @@ public class MealPlanServiceStub implements IMealPlanService {
         return mealItemDAO.save(mealItem);
     }
 
-
+    @Override
+    public Recipe searchByName(String chicken) {
+        Recipe recipe = new Recipe();
+        recipe.setName("Chicken Burger");
+        return recipe;
+    }
 
     @Override
     public List<MealItem> fetchAll() {

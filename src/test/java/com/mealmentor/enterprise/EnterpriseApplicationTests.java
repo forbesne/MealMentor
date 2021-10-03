@@ -36,12 +36,11 @@ class EnterpriseApplicationTests {
         thenCreateNewMealItemRecordAndReturnIt();
     }
 
-    @Test
     private void givenRecipeDataAreAvailable() throws Exception {
         Mockito.when(mealItemDAO.save(mealItem)).thenReturn(mealItem);
         mealPlanService = new MealPlanServiceStub(mealItemDAO);
     }
-    @Test
+
     private void whenUserAddsANewMealItemAndSaves() {
         mealItem.setMealtime("dinner");
         mealItem.setDay("Monday");
@@ -49,7 +48,6 @@ class EnterpriseApplicationTests {
         mealItem.setRecipe(recipe);
     }
 
-    @Test
     private void thenCreateNewMealItemRecordAndReturnIt() throws Exception {
         MealItem addedMealItem = mealPlanService.save(mealItem);
         assertEquals(mealItem, addedMealItem);
@@ -62,11 +60,11 @@ class EnterpriseApplicationTests {
         whenUserSearchesChicken();
         thenReturnRecipesContainingChicken();
     }
-    @Test
+
     private void whenUserSearchesChicken() {
         recipe = mealPlanService.searchByName("chicken");
     }
-    @Test
+
     private void thenReturnRecipesContainingChicken() {
         String name = recipe.getName();
         assertEquals("Chicken Burger", name);
