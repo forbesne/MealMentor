@@ -12,6 +12,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.mealmentor.enterprise.dto.Recipe;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 @Controller
 public class MealMentorController {
 
@@ -60,4 +66,19 @@ public class MealMentorController {
         }
 
     }
+
+    @RequestMapping(value = "/",method = RequestMethod.GET)
+    public String read(Model model){
+        model.addAttribute("Recipe", new Recipe());
+        return "start";
+    }
+
+
+    @RequestMapping (value = "/searchReceipe")
+    public String searchReceipe (Recipe Recipe)
+    {
+        Recipe.setName("Chicken Burger");
+        return "start";
+    }
+
 }

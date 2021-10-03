@@ -1,5 +1,6 @@
 package com.mealmentor.enterprise.service;
 
+import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
 
@@ -20,4 +21,7 @@ public interface IMealPlanService {
     void delete(int id) throws Exception;
 
     List<MealItem> fetchAll();
+
+    DailyCounter saveDailyCounter(DailyCounter dailyCounter);
+
 }

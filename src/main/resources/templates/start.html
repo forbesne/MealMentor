@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -38,8 +38,8 @@ h2 {
                 <a class="nav-link" href="#">Shopping List</a>
             </li>
         </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search">
+        <form class="form-inline my-2 my-lg-0" action ="#"  th:action="@{/searchReceipe}" th:object="${Recipe}" method="GET">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search" th:field="*{name}" >
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form>
     </div>
@@ -62,7 +62,7 @@ h2 {
         <tbody>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Breakfast</th>
-            <td></td>
+            <td> <a href="#"> <select id="sel"> <option value=""> -- Select -- </option> </select> </a> </td>
             <td></td>
             <td></td>
             <td></td>
@@ -102,6 +102,16 @@ h2 {
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Dinner</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr style="LINE-HEIGHT:60px">
+            <th scope="row">Total Calories</th>
             <td></td>
             <td></td>
             <td></td>
