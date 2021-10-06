@@ -22,34 +22,13 @@ h2 {
 }
 </style>
 <body>
-<div id="one">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <h2> Meal Mentor </h2>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Shopping List</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action ="#"  th:action="@{/searchReceipe}" th:object="${Recipe}" method="GET">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search" th:field="*{name}" >
-            <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
-        </form>
-    </div>
-</nav>
+<div th:replace="fragments/topnav :: navbar">
 </div>
-<div id="two">
+<div>
     <table class="table table-sm">
         <thead>
         <tr style="LINE-HEIGHT:60px">
-            <th scope="col"></th>
+            <th scope="col"><a href="#"> <select id="sel"> <option value=""> -- Select -- </option> </select> </a></th>
             <th scope="col">Monday</th>
             <th scope="col">Tuesday</th>
             <th scope="col">Wednesday</th>
@@ -62,63 +41,63 @@ h2 {
         <tbody>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Breakfast</th>
-            <td> <a href="#"> <select id="sel"> <option value=""> -- Select -- </option> </select> </a> </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="breakfastM"></td>
+            <td id="breakfastT"></td>
+            <td id="breakfastW"></td>
+            <td id="breakfastR"></td>
+            <td id="breakfastF"></td>
+            <td id="breakfastS"></td>
+            <td id="breakfastU"></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="snack1M"></td>
+            <td id="snack1T"></td>
+            <td id="snack1W"></td>
+            <td id="snack1R"></td>
+            <td id="snack1F"></td>
+            <td id="snack1S"></td>
+            <td id="snack1U"></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Lunch</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="lunchM"></td>
+            <td id="lunchT"></td>
+            <td id="lunchW"></td>
+            <td id="lunchR"></td>
+            <td id="lunchF"></td>
+            <td id="lunchS"></td>
+            <td id="lunchU"></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="snack2M"></td>
+            <td id="snack2T"></td>
+            <td id="snack2W"></td>
+            <td id="snack2R"></td>
+            <td id="snack2F"></td>
+            <td id="snack2S"></td>
+            <td id="snack2U"></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Dinner</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="dinnerM"></td>
+            <td id="dinnerT"></td>
+            <td id="dinnerW"></td>
+            <td id="dinnerR"></td>
+            <td id="dinnerF"></td>
+            <td id="dinnerS"></td>
+            <td id="dinnerU"></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Total Calories</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="totalCalM"></td>
+            <td id="totalCalT"></td>
+            <td id="totalCalW"></td>
+            <td id="totalCalR"></td>
+            <td id="totalCalF"></td>
+            <td id="totalCalS"></td>
+            <td id="totalCalU"></td>
         </tr>
         </tbody>
     </table>
