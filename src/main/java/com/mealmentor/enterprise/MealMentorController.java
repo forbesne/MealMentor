@@ -2,6 +2,8 @@ package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.service.IMealPlanService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -13,13 +15,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+
 @Controller
 public class MealMentorController {
+
+
+    Logger logger = LoggerFactory.getLogger(MealMentorController.class);
 
     @Autowired
     IMealPlanService mealPlanService;
@@ -50,7 +55,10 @@ public class MealMentorController {
         try{
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
-            //TODO ADD LOGGING
+            logger.error("Cannot create a meal item");
+            e.printStackTrace();
+            throw(e);
+            // not necessary but if you'd like, redirect user to the error page here.
 
         }
         return newMealItem;
@@ -74,8 +82,8 @@ public class MealMentorController {
     }
 
 
-    @RequestMapping (value = "/searchReceipe")
-    public String searchReceipe (Recipe Recipe)
+    @RequestMapping (value = "/searchRecipe")
+    public String searchRecipe (Recipe Recipe)
     {
         Recipe.setName("Chicken Burger");
         return "start";

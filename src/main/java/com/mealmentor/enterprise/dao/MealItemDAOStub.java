@@ -14,8 +14,17 @@ public class MealItemDAOStub implements IMealItemDAO {
 
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
-        Integer mealItemID = Integer.parseInt(mealItem.getMealItemId());
-        allMealItems.put(mealItemID, mealItem);
+
+
+        try {
+
+            Integer mealItemID = Integer.parseInt(mealItem.getMealItemId());
+            allMealItems.put(mealItemID, mealItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw(e);
+        }
+
         return mealItem;
     }
 

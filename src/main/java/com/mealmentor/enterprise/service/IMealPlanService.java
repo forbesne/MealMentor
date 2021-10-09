@@ -14,14 +14,39 @@ public interface IMealPlanService {
      */
     MealItem fetchById(int id);
 
+    /**
+     * Save a mealItem
+     * @param mealItem
+     * @return MealItem
+     * @throws Exception
+     */
     MealItem save(MealItem mealItem) throws Exception;
 
+    /**
+     * Search a recipe by name
+     * @param chicken
+     * @return Recipe
+     */
     Recipe searchByName(String chicken);
 
+    /**
+     * Delete a specimen with a given ID
+     * @param id
+     * @throws Exception
+     */
     void delete(int id) throws Exception;
 
+    /**
+     * Fetch all specimens
+     * @return
+     */
     List<MealItem> fetchAll();
 
+    /**
+     * Save Daily Counter
+     * @param dailyCounter
+     * @return DailyCounter
+     */
     DailyCounter saveDailyCounter(DailyCounter dailyCounter);
 
 }
