@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -45,7 +44,7 @@ public class MealMentorController {
     }
 
     @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
-    public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
+    public MealItem createMealItem(@RequestBody MealItem mealItem)  {
         MealItem newMealItem = null;
         try{
             newMealItem = mealPlanService.save(mealItem);
@@ -74,8 +73,8 @@ public class MealMentorController {
     }
 
 
-    @RequestMapping (value = "/searchReceipe")
-    public String searchReceipe (Recipe Recipe)
+    @RequestMapping (value = "/searchRecipe")
+    public String searchRecipe (Recipe Recipe)
     {
         Recipe.setName("Chicken Burger");
         return "start";
