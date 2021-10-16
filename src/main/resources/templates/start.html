@@ -28,12 +28,14 @@ h2 {
 </style>
 </head>
 <body>
+
 <div th:replace="fragments/topnav :: navbar"> </div>
 <div id="mealPlan">
+
     <table class="table table-sm">
         <thead>
         <tr style="LINE-HEIGHT:60px">
-            <th scope="col"></th>
+            <th scope="col"><a href="#"> <select id="sel"> <option value=""> -- Select -- </option> </select> </a></th>
             <th scope="col">Monday</th>
             <th scope="col">Tuesday</th>
             <th scope="col">Wednesday</th>
@@ -56,53 +58,53 @@ h2 {
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="snack1M"></td>
+            <td id="snack1T"></td>
+            <td id="snack1W"></td>
+            <td id="snack1R"></td>
+            <td id="snack1F"></td>
+            <td id="snack1S"></td>
+            <td id="snack1U"></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Lunch</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="lunchM"></td>
+            <td id="lunchT"></td>
+            <td id="lunchW"></td>
+            <td id="lunchR"></td>
+            <td id="lunchF"></td>
+            <td id="lunchS"></td>
+            <td id="lunchU"></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="snack2M"></td>
+            <td id="snack2T"></td>
+            <td id="snack2W"></td>
+            <td id="snack2R"></td>
+            <td id="snack2F"></td>
+            <td id="snack2S"></td>
+            <td id="snack2U"></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Dinner</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="dinnerM"></td>
+            <td id="dinnerT"></td>
+            <td id="dinnerW"></td>
+            <td id="dinnerR"></td>
+            <td id="dinnerF"></td>
+            <td id="dinnerS"></td>
+            <td id="dinnerU"></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Total Calories</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td id="totalCalM"></td>
+            <td id="totalCalT"></td>
+            <td id="totalCalW"></td>
+            <td id="totalCalR"></td>
+            <td id="totalCalF"></td>
+            <td id="totalCalS"></td>
+            <td id="totalCalU"></td>
         </tr>
         </tbody>
     </table>
