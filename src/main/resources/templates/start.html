@@ -26,6 +26,15 @@ h2 {
   padding-down: 50px;
 }
 </style>
+    <script type="text/javascript">
+        $(function() {
+         $("#Recipe_Name").autocomplete({
+         source:"recipeNameAutocomplete",
+         minLength:2
+         });
+        });
+
+    </script>
 </head>
 <body>
 

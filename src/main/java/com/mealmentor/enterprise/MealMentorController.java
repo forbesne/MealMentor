@@ -2,6 +2,7 @@ package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.service.IMealPlanService;
+import jdk.jshell.SourceCodeAnalysis;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
@@ -83,6 +85,19 @@ public class MealMentorController {
     public String searchReceipe(@RequestParam(value="searchTerm", required = false, defaultValue="") String searchTerm) {
         String term = searchTerm+"";
         return "recipes";
+    }
+
+    @GetMapping("/recipeNameAutocomplete")
+    @ResponseBody
+    public List<String> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {
+
+        List <String> suggestions = new ArrayList<>();
+        suggestions.add("Sausage and Shrimp");
+        suggestions.add("Beef and Barley Soup");
+        suggestions.add("Chiken");
+        suggestions.add("Fried Rice");
+        return suggestions;
+
     }
 
 }
