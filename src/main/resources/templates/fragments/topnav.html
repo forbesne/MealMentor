@@ -14,8 +14,8 @@
           <a class="nav-link" href="#">Shopping List</a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0" action ="#"  th:action="@{/searchReceipe}" th:object="${Recipe}" method="GET">
-        <input list="Recipe_Search" class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search" th:field="*{name}" >
+      <form class="form-inline my-2 my-lg-0" action ="#"  th:action="@{/searchRecipe}" method="GET">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  name="searchTerm" id="searchTerm">
         <datalist id="Recipe_Search">
           <option value="Chicken Noodle Soup"></option>
           <option value="Tuna Patties"></option>

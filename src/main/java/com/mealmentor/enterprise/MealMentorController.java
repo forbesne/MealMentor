@@ -78,11 +78,11 @@ public class MealMentorController {
     }
 
 
-    @RequestMapping (value = "/searchRecipe")
-    public String searchRecipe (Recipe Recipe)
-    {
-        Recipe.setName("Chicken Burger");
-        return "start";
+    @RequestMapping(value = "/searchRecipe",method = RequestMethod.GET)
+    @ResponseBody
+    public String searchReceipe(@RequestParam(value="searchTerm", required = false, defaultValue="") String searchTerm) {
+        String term = searchTerm+"";
+        return "recipes";
     }
 
 }
