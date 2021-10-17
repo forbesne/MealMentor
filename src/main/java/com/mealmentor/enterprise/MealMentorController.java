@@ -46,12 +46,13 @@ public class MealMentorController {
 
     @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
     public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
+
         MealItem newMealItem = null;
         try{
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
-
+            System.out.println("tried to access methods in business logic but failed");
         }
         return newMealItem;
     }

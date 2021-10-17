@@ -1,6 +1,9 @@
 package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
+import com.mealmentor.enterprise.dao.ISpoonacularDAO;
+import com.mealmentor.enterprise.dao.SpoonacularDAO;
+import com.mealmentor.enterprise.dao.TDEEDAO;
 import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
@@ -10,6 +13,8 @@ import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +36,8 @@ class EnterpriseApplicationTests {
     private List<ShoppingItem> shoppingItemList = new ArrayList<>();
     private List<MealItem> mealItemList = new ArrayList<>();
     private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
+    private SpoonacularDAO spoonacularDAO = new SpoonacularDAO();
+    private TDEEDAO tdeeDAO = new TDEEDAO();
 
     @MockBean
     private IMealItemDAO mealItemDAO;
@@ -211,4 +218,18 @@ class EnterpriseApplicationTests {
     private void thenDisplayNothing() {
         assertEquals(0, shoppingItemList.size());
     }
+
+    @Test
+    void getMealItemFromNameAndCalorieThreshold(){
+        String response = spoonacularDAO.get("pasta", 2000);
+        System.out.println("The response for this method call was: " + response);
+        assert(response!=null);
+    }
+
+    @Test
+    void getTDEEFromUserInfo() throws URISyntaxException, IOException {
+        int targetTDEE = tdeeDAO.post("6", "1", "220", "200", "28", "1.375", "2", "15", "30", "male");
+        assert(targetTDEE == 2529);
+    }
+
 }
