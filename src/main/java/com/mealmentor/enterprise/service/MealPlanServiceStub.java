@@ -4,6 +4,7 @@ import com.mealmentor.enterprise.dao.IMealItemDAO;
 import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +22,12 @@ public class MealPlanServiceStub implements IMealPlanService {
 
     @Override
     public MealItem fetchById(int id) {
-        return mealItemDAO.fetch(id);
+        MealItem foundMealItem = mealItemDAO.fetch(id);
+        return foundMealItem;
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws Exception {
         mealItemDAO.delete(id);
     }
 
