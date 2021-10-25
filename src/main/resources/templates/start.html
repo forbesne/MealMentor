@@ -6,29 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Meal Mentor</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style>
+        .navbar-nav > li{
+            padding-left:70px;
+        }
+        h2 {
+            color: #2faf9f;
+        }
+        #two {
+            padding-top: 60px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-down: 50px;
+        }
+    </style>
 </head>
-<style>
-.navbar-nav > li{
-  padding-left:70px;
-}
-h2 {
-  color: #2faf9f;
-}
-#two {
-  padding-top: 60px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-down: 50px;
-}
-</style>
 <body>
-<div th:replace="fragments/topnav :: navbar">
-</div>
-<div>
+<div th:replace="fragments/topnav :: navbar"> </div>
+<div id="mealPlan">
     <table class="table table-sm">
         <thead>
         <tr style="LINE-HEIGHT:60px">
-            <th scope="col"><a href="#"> <select id="sel"> <option value=""> -- Select -- </option> </select> </a></th>
+            <th scope="col"></th>
             <th scope="col">Monday</th>
             <th scope="col">Tuesday</th>
             <th scope="col">Wednesday</th>
@@ -41,69 +46,66 @@ h2 {
         <tbody>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Breakfast</th>
-            <td id="breakfastM"></td>
-            <td id="breakfastT"></td>
-            <td id="breakfastW"></td>
-            <td id="breakfastR"></td>
-            <td id="breakfastF"></td>
-            <td id="breakfastS"></td>
-            <td id="breakfastU"></td>
+            <td> <a href="#"> <select id="sel"> <option> Select </option> </select> </a> </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td id="snack1M"></td>
-            <td id="snack1T"></td>
-            <td id="snack1W"></td>
-            <td id="snack1R"></td>
-            <td id="snack1F"></td>
-            <td id="snack1S"></td>
-            <td id="snack1U"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Lunch</th>
-            <td id="lunchM"></td>
-            <td id="lunchT"></td>
-            <td id="lunchW"></td>
-            <td id="lunchR"></td>
-            <td id="lunchF"></td>
-            <td id="lunchS"></td>
-            <td id="lunchU"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td id="snack2M"></td>
-            <td id="snack2T"></td>
-            <td id="snack2W"></td>
-            <td id="snack2R"></td>
-            <td id="snack2F"></td>
-            <td id="snack2S"></td>
-            <td id="snack2U"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Dinner</th>
-            <td id="dinnerM"></td>
-            <td id="dinnerT"></td>
-            <td id="dinnerW"></td>
-            <td id="dinnerR"></td>
-            <td id="dinnerF"></td>
-            <td id="dinnerS"></td>
-            <td id="dinnerU"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Total Calories</th>
-            <td id="totalCalM"></td>
-            <td id="totalCalT"></td>
-            <td id="totalCalW"></td>
-            <td id="totalCalR"></td>
-            <td id="totalCalF"></td>
-            <td id="totalCalS"></td>
-            <td id="totalCalU"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
         </tbody>
     </table>
 </div>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

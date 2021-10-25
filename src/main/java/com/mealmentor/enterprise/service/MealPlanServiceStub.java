@@ -25,7 +25,7 @@ public class MealPlanServiceStub implements IMealPlanService {
     }
 
     @Override
-    public void delete(int id) {
+    public void delete(int id) throws Exception {
         mealItemDAO.delete(id);
     }
 

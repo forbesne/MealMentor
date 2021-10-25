@@ -1,4 +1,4 @@
-<div th:fragment="navbar">
+<div th:fragment="navbar" xmlns:th="http://www.w3.org/1999/xhtml">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <h2> Meal Mentor </h2>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,8 +14,15 @@
                     <a class="nav-link" href="#">Shopping List</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search">
+            <form class="form-inline my-2 my-lg-0" action ="#"  th:action="@{/searchRecipe}" th:object="${Recipe}" method="GET">
+                <input list="Recipe_Search" class="form-control mr-sm-2" type="search" placeholder="Search a meal ..." aria-label="Search" th:field="*{name}" >
+                <datalist id="Recipe_Search">
+                    <option value="Chicken Noodle Soup"></option>
+                    <option value="Tuna Patties"></option>
+                    <option value="Smoothie"></option>
+                    <option value="Avocado Toast"></option>
+                    <option value="Milkshake"></option>
+                </datalist>
                 <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>

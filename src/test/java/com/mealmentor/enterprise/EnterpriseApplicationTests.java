@@ -134,7 +134,7 @@ class EnterpriseApplicationTests {
     }
 
     @Test
-    void createShoppingList_validateReturnShoppingList() {
+    void createShoppingList_validateReturnShoppingList() throws Exception {
         givenUserSavedMeals();
         whenUserGeneratesShoppingList();
         thenDisplayList();
@@ -196,7 +196,7 @@ class EnterpriseApplicationTests {
     }
 
     @Test
-    void createEmptyShoppingList_validateReturnNothing() {
+    void createEmptyShoppingList_validateReturnNothing() throws Exception {
         givenUserNeverSavedMeals();
         whenUserGeneratesShoppingList();
         thenDisplayNothing();
