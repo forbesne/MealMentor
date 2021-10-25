@@ -13,7 +13,7 @@ public class MealItemDAOStub implements IMealItemDAO {
     HashMap<Integer, MealItem> allMealItems = new HashMap<>();
 
     @Override
-    public MealItem save(MealItem mealItem) {
+    public MealItem save(MealItem mealItem) throws Exception {
         Integer mealItemID = Integer.parseInt(mealItem.getMealItemId());
         allMealItems.put(mealItemID, mealItem);
         return mealItem;
@@ -21,7 +21,8 @@ public class MealItemDAOStub implements IMealItemDAO {
 
     @Override
     public List<MealItem> fetchAll() {
-        return new ArrayList<>(allMealItems.values());
+        List<MealItem> returnsMealItems = new ArrayList<>(allMealItems.values());
+        return returnsMealItems;
     }
 
     @Override
