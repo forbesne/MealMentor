@@ -1,12 +1,14 @@
 package com.mealmentor.enterprise.service;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
+import com.mealmentor.enterprise.dao.IRecipeDAO;
 import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.List;
 
 @Service
@@ -14,6 +16,9 @@ public class MealPlanServiceStub implements IMealPlanService {
 
 
     private IMealItemDAO mealItemDAO;
+
+    @Autowired
+    private IRecipeDAO recipeDAO;
 
     public MealPlanServiceStub(IMealItemDAO mealItemDAO) {
 
@@ -51,6 +56,16 @@ public class MealPlanServiceStub implements IMealPlanService {
     @Override
     public DailyCounter saveDailyCounter(DailyCounter dailyCounter) {
         return dailyCounter;
+    }
+
+    @Override
+    public List<Recipe> fetchRecipes(String recipeName) throws IOException {
+        return recipeDAO.fetchRecipes(recipeName);
+    }
+
+    @Override
+    public List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException {
+        return recipeDAO.fetchAutocompleteRecipes(recipeName);
     }
 
 }

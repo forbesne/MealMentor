@@ -4,6 +4,7 @@ import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface IMealPlanService {
@@ -24,4 +25,7 @@ public interface IMealPlanService {
 
     DailyCounter saveDailyCounter(DailyCounter dailyCounter);
 
+    List<Recipe> fetchRecipes(String recipeName) throws IOException;
+
+    List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException;
 }
