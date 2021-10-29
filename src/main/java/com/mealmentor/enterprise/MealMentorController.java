@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,16 +72,23 @@ public class MealMentorController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String read(Model model){
-        model.addAttribute("Recipe", new Recipe());
+        model.addAttribute("recipe", new Recipe());
         return "start";
     }
 
 
-    @RequestMapping (value = "/searchReceipe")
-    public String searchReceipe (Recipe Recipe)
-    {
-        Recipe.setName("Chicken Burger");
-        return "start";
+    @GetMapping(value = "/searchRecipe")
+    @ResponseBody
+    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+        try {
+            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            model.addAttribute("recipes", recipes);
+            return "recipes";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+
     }
 
     @GetMapping("/recipeNameAutocomplete")
