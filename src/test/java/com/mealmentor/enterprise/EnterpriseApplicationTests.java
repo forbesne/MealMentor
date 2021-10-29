@@ -8,6 +8,8 @@ import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
 import lombok.SneakyThrows;
+import net.minidev.json.JSONObject;
+import netscape.javascript.JSObject;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -221,7 +223,7 @@ class EnterpriseApplicationTests {
 
     @Test
     void getMealItemFromNameAndCalorieThreshold(){
-        String response = spoonacularDAO.get("pasta", 2000);
+        JSONObject response = spoonacularDAO.get("pasta", 2000);
         System.out.println("The response for this method call was: " + response);
         assert(response!=null);
     }
