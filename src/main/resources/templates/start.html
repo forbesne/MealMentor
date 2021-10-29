@@ -14,7 +14,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
 .navbar-nav > li{
-  padding-left:70px;
+    padding-left:70px;
 }
 h2 {
   color: #2faf9f;
@@ -24,6 +24,13 @@ h2 {
   padding-left: 50px;
   padding-right: 50px;
   padding-down: 50px;
+}
+.Meal{
+    width: 150px;
+}
+mealrow
+{
+    width: 150px;
 }
 </style>
     <script type="text/javascript">
@@ -39,6 +46,17 @@ h2 {
             });
         });
 
+        $(function() {
+            $(".Meal").autocomplete({
+                source:"recipeNameAutocomplete",
+                minLength:3,
+                select: function(event, ui) {
+                this.value = ui.item.label;
+                $("#Recipe_Id").val(ui.item.value);
+                return false;
+            }
+            });
+        });
     </script>
 </head>
 <body>
@@ -60,7 +78,13 @@ h2 {
         <tbody>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Breakfast</th>
-            <td> <a href="#"> <select id="sel"> <option> Select </option> </select> </a> </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Monday_Breakfast">
+                    </div>
+                </div>
+            </td>
             <td></td>
             <td></td>
             <td></td>
@@ -121,5 +145,6 @@ h2 {
         </tbody>
     </table>
 </div>
+<input class="form-control mr-sm-2" type="hidden" placeholder="Search a meal ..." aria-label="Search"  id="Recipe_Id">
 </body>
 </html>
