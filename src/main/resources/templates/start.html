@@ -13,26 +13,26 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <style>
-.navbar-nav > li{
-    padding-left:70px;
-}
-h2 {
-  color: #2faf9f;
-}
-#two {
-  padding-top: 60px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-down: 50px;
-}
-.Meal{
-    width: 150px;
-}
-mealrow
-{
-    width: 150px;
-}
-</style>
+        .navbar-nav > li{
+            padding-left:70px;
+        }
+        h2 {
+            color: #2faf9f;
+        }
+        #two {
+            padding-top: 60px;
+            padding-left: 50px;
+            padding-right: 50px;
+            padding-down: 50px;
+        }
+        .Meal{
+            width: 230px;
+        }
+       .btn
+       {
+           width: 150px;
+       }
+    </style>
     <script type="text/javascript">
         $(function() {
             $("#Recipe_Name").autocomplete({
@@ -51,16 +51,18 @@ mealrow
                 source:"recipeNameAutocomplete",
                 minLength:3,
                 select: function(event, ui) {
-                this.value = ui.item.label;
-                $("#Recipe_Id").val(ui.item.value);
-                return false;
-            }
+                    this.value = ui.item.label;
+                    $("#Recipe_Id").val(ui.item.value);
+                    return false;
+                }
             });
         });
     </script>
 </head>
 <body>
+
 <div th:replace="fragments/topnav :: navbar"> </div>
+<form  action="#" th:action="@{/saveMeal}"  method="GET">
 <div id="mealPlan">
     <table class="table table-sm">
         <thead>
@@ -85,52 +87,256 @@ mealrow
                     </div>
                 </div>
             </td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Tuesday_Breakfast">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Wednesday_Breakfast">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Thursday_Breakfast">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Friday_Breakfast">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Saturday_Breakfast">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Sunday_Breakfast">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Monday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Tuesday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Wednesday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Thursday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Friday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Saturday_Snack_1">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Sunday_Snack_1">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Lunch</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Monday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Tuesday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Wednesday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Thursday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Friday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Saturday_Lunch">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Sunday_Lunch">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Snack</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Monday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Tuesday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Wednesday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Thursday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Friday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Saturday_Snack_2">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Sunday_Snack_2">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr class="table-success" style="LINE-HEIGHT:60px">
             <th scope="row">Dinner</th>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Monday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Tuesday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Wednesday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Thursday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Friday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Saturday_Dinner">
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div class="mealrow form-group row" >
+                    <div class="col-xs-3">
+                        <input class="Meal form-control mr-sm-2" type="search"  aria-label="Search" name="searchTerm"  id="Sunday_Dinner">
+                    </div>
+                </div>
+            </td>
         </tr>
         <tr style="LINE-HEIGHT:60px">
             <th scope="row">Total Calories</th>
@@ -144,7 +350,12 @@ mealrow
         </tr>
         </tbody>
     </table>
+
 </div>
+    <div class="col text-center">
+        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Save</button>
+    </div>
 <input class="form-control mr-sm-2" type="hidden" placeholder="Search a meal ..." aria-label="Search"  id="Recipe_Id">
+</form>
 </body>
 </html>
