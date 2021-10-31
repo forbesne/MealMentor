@@ -228,10 +228,4 @@ class EnterpriseApplicationTests {
         assert(response!=null);
     }
 
-    @Test
-    void getTDEEFromUserInfo() throws URISyntaxException, IOException {
-        int targetTDEE = tdeeDAO.post("6", "1", "220", "200", "28", "1.375", "2", "15", "30", "male");
-        assert(targetTDEE == 2529);
-    }
-
 }
