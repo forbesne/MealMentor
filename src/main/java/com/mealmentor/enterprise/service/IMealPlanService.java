@@ -27,5 +27,4 @@ public interface IMealPlanService {
 
     List<Recipe> fetchRecipes(String recipeName) throws IOException;
 
-    List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException;
 }

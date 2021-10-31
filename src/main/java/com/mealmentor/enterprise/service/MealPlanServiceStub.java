@@ -60,12 +60,8 @@ public class MealPlanServiceStub implements IMealPlanService {
 
     @Override
     public List<Recipe> fetchRecipes(String recipeName) throws IOException {
-        return recipeDAO.fetchRecipes(recipeName);
-    }
-
-    @Override
-    public List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException {
         return recipeDAO.fetchAutocompleteRecipes(recipeName);
     }
+
 
 }

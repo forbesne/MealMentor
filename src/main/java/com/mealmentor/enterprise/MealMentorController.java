@@ -90,6 +90,17 @@ public class MealMentorController {
         }
 
     }
+    @RequestMapping("/saveMeal")
+    public String saveMeal(MealItem mealItem){
+        try{
+            mealPlanService.save(mealItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "start";
+
+        }
+        return "start";
+    }
 
     @GetMapping("/recipeNameAutocomplete")
     @ResponseBody
