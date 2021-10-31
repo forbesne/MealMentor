@@ -54,8 +54,9 @@ class EnterpriseApplicationTests {
     private void whenUserAddsANewMealItemAndSaves() {
         mealItem.setMealtime("dinner");
         mealItem.setDay("Monday");
+        recipe.setId(1);
         recipe.setName("Lasagna");
-        //mealItem.setRecipe(recipe);
+        mealItem.setRecipeId(recipe.getId());
     }
 
     private void thenCreateNewMealItemRecordAndReturnIt() throws Exception {
@@ -92,9 +93,10 @@ class EnterpriseApplicationTests {
         mealItem.setDay("Monday");
         recipe.setName("Lasagna");
         recipe.setCalories(120);
-        //mealItem.setRecipe(recipe);
+        recipe.setId(2);
+        mealItem.setRecipeId(recipe.getId());
         dailyCounter.setDay(mealItem.getDay());
-        //dailyCounter.setCalorieCount(mealItem.getRecipe().getCalories());
+        dailyCounter.setCalorieCount(recipe.getCalories());
     }
 
     private void thenCreateDailyCounterWith120calorieCount() {
@@ -120,13 +122,14 @@ class EnterpriseApplicationTests {
         mealItem.setDay("Monday");
         recipe.setName("Pizza");
         recipe.setCalories(250);
-       // mealItem.setRecipe(recipe);
+        recipe.setId(3);
+        mealItem.setRecipeId(recipe.getId());
         if (Objects.equals(dailyCounter.getDay(), mealItem.getDay())) {
-           // dailyCounter.setCalorieCount(dailyCounter.getCalorieCount() + mealItem.getRecipe().getCalories());
+            dailyCounter.setCalorieCount(dailyCounter.getCalorieCount() + recipe.getCalories());
         }
         else {
             dailyCounter.setDay(mealItem.getDay());
-            //dailyCounter.setCalorieCount(mealItem.getRecipe().getCalories());
+            dailyCounter.setCalorieCount(recipe.getCalories());
         }
     }
 
@@ -135,80 +138,4 @@ class EnterpriseApplicationTests {
         assertEquals(370, addedDailyCounter.getCalorieCount());
     }
 
-    @Test
-    void createShoppingList_validateReturnShoppingList() throws Exception {
-        givenUserSavedMeals();
-        whenUserGeneratesShoppingList();
-        thenDisplayList();
-    }
-
-    private void givenUserSavedMeals() {
-
-        recipe.setName("Pizza");
-
-        ingredient.setName("dough");
-        ingredient.setUnit("grams");
-        recipeIngredient.setIngredient(ingredient);
-        recipeIngredient.setQuantity(500);
-        recipeIngredientList.add(recipeIngredient);
-
-        ingredient = new Ingredient();
-        ingredient.setName("cheese");
-        ingredient.setUnit("grams");
-
-        recipeIngredient = new RecipeIngredient();
-        recipeIngredient.setIngredient(ingredient);
-        recipeIngredient.setQuantity(50);
-        recipeIngredientList.add(recipeIngredient);
-
-        recipe.setRecipeIngredientList(recipeIngredientList);
-        //mealItem.setRecipe(recipe);
-        mealItemList.add(mealItem);
-
-        recipe = new Recipe();
-        recipe.setName("Lasagna");
-
-        recipeIngredient = new RecipeIngredient();
-        recipeIngredient.setIngredient(ingredient);
-        recipeIngredient.setQuantity(100);
-        recipeIngredientList = new ArrayList<>();
-        recipeIngredientList.add(recipeIngredient);
-
-        recipe.setRecipeIngredientList(recipeIngredientList);
-        mealItem = new MealItem();
-        //mealItem.setRecipe(recipe);
-        mealItemList.add(mealItem);
-
-    }
-
-    private void whenUserGeneratesShoppingList() {
-        for (MealItem mi : mealItemList) {
-            ShoppingItem shoppingItem = new ShoppingItem();
-            //List<RecipeIngredient> recipeIngredientList = mi.getRecipe().getRecipeIngredientList();
-            for (RecipeIngredient ri : recipeIngredientList) {
-                shoppingItem.setIngredient(ri.getIngredient());
-                shoppingItem.setQuantity(ri.getQuantity());
-                shoppingItemList.add(shoppingItem);
-            }
-        }
-    }
-
-    private void thenDisplayList() {
-        assertEquals(3, shoppingItemList.size());
-    }
-
-    @Test
-    void createEmptyShoppingList_validateReturnNothing() throws Exception {
-        givenUserNeverSavedMeals();
-        whenUserGeneratesShoppingList();
-        thenDisplayNothing();
-    }
-
-    private void givenUserNeverSavedMeals() {
-
-    }
-
-    private void thenDisplayNothing() {
-        assertEquals(0, shoppingItemList.size());
-    }
 }

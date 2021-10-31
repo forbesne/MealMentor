@@ -1,6 +1,7 @@
 package com.mealmentor.enterprise.dao;
 
 import com.mealmentor.enterprise.dto.MealItem;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Repository
+@Profile("test")
 public class MealItemDAOStub implements IMealItemDAO {
 
     HashMap<Integer, MealItem> allMealItems = new HashMap<>();

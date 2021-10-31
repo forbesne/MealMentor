@@ -1,8 +1,8 @@
 package com.mealmentor.enterprise.dao;
 
-import com.mealmentor.enterprise.dto.MealItem;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.context.annotation.Profile;
 
-public interface MealItemRepository extends CrudRepository<MealItem, Integer> {
+@Profile("!test")
+public interface MealItemRepository {
 
 }
