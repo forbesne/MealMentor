@@ -1,6 +1,7 @@
 package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dto.MealItem;
+import com.mealmentor.enterprise.dto.RecipeLabelValue;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
@@ -70,16 +73,58 @@ public class MealMentorController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String read(Model model){
-        model.addAttribute("Recipe", new Recipe());
+        model.addAttribute("recipe", new Recipe());
         return "start";
     }
 
 
-    @RequestMapping (value = "/searchReceipe")
-    public String searchReceipe (Recipe Recipe)
-    {
-        Recipe.setName("Chicken Burger");
+    @GetMapping(value = "/searchRecipe")
+    @ResponseBody
+    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+        try {
+            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            model.addAttribute("recipes", recipes);
+            return "recipes";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+
+    }
+    @RequestMapping("/saveMeal")
+    public String saveMeal(MealItem mealItem){
+        try{
+            mealPlanService.save(mealItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "start";
+
+        }
         return "start";
+    }
+
+    @GetMapping("/recipeNameAutocomplete")
+    @ResponseBody
+    public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {
+
+        List <RecipeLabelValue> allRecipeNames= new ArrayList<RecipeLabelValue>();
+
+    try {
+        List<Recipe> recipes = mealPlanService.fetchRecipes(term);
+        for (Recipe recipe : recipes)
+        {
+            RecipeLabelValue recipeLabelValue = new RecipeLabelValue();
+            recipeLabelValue.setLabel(recipe.getName());
+            recipeLabelValue.setValue(recipe.getId());
+            allRecipeNames.add(recipeLabelValue);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ArrayList<RecipeLabelValue>();
+    }
+
+    return allRecipeNames;
+
     }
 
 }
