@@ -140,7 +140,7 @@ public class TDEEDAO {
 
         int calorieThreshold = (((Integer.parseInt(tDEE) - Integer.parseInt(minimumCalories)) / 4) * 3) + Integer.parseInt(minimumCalories);
         System.out.println("tdee minus min calorie intake divided by four. then multiplied by 3. Once this amount is added to the minimum calorie amount we have: " + calorieThreshold);
-
+        //This is a test
 
         return calorieThreshold;
     }
