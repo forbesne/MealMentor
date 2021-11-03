@@ -1,9 +1,8 @@
 package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dto.MealItem;
+import com.mealmentor.enterprise.dto.RecipeLabelValue;
 import com.mealmentor.enterprise.service.IMealPlanService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,17 +11,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MealMentorController {
-
-    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @Autowired
     IMealPlanService mealPlanService;
@@ -49,13 +49,13 @@ public class MealMentorController {
 
     @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
     public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
+
         MealItem newMealItem = null;
         try{
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
-            log.error("unable to save item", e);
-            e.printStackTrace();
-            throw(e);
+            //TODO ADD LOGGING
+            System.out.println("tried to access methods in business logic but failed");
         }
         return newMealItem;
     }
@@ -73,16 +73,58 @@ public class MealMentorController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String read(Model model){
-        model.addAttribute("Recipe", new Recipe());
+        model.addAttribute("recipe", new Recipe());
         return "start";
     }
 
 
-    @RequestMapping (value = "/searchRecipe")
-    public String searchRecipe (Recipe Recipe)
-    {
-        Recipe.setName("Chicken Burger");
+    @GetMapping(value = "/searchRecipe")
+    @ResponseBody
+    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+        try {
+            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            model.addAttribute("recipes", recipes);
+            return "recipes";
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "error";
+        }
+
+    }
+    @RequestMapping("/saveMeal")
+    public String saveMeal(MealItem mealItem){
+        try{
+            mealPlanService.save(mealItem);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "start";
+
+        }
         return "start";
+    }
+
+    @GetMapping("/recipeNameAutocomplete")
+    @ResponseBody
+    public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {
+
+        List <RecipeLabelValue> allRecipeNames= new ArrayList<RecipeLabelValue>();
+
+    try {
+        List<Recipe> recipes = mealPlanService.fetchRecipes(term);
+        for (Recipe recipe : recipes)
+        {
+            RecipeLabelValue recipeLabelValue = new RecipeLabelValue();
+            recipeLabelValue.setLabel(recipe.getName());
+            recipeLabelValue.setValue(recipe.getId());
+            allRecipeNames.add(recipeLabelValue);
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+        return new ArrayList<RecipeLabelValue>();
+    }
+
+    return allRecipeNames;
+
     }
 
 }
