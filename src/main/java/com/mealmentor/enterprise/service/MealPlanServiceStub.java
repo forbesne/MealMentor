@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * MealPlanServiceStub handles application critical operations such as
+ * fetch item by id, delete meal item, save meal item, search meal item
+ * fetch all meal items, save daily counter, and fetch recipes.
+ */
 @Service
 public class MealPlanServiceStub implements IMealPlanService {
 
