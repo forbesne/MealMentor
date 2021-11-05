@@ -55,7 +55,7 @@ public class MealMentorController {
     @PostMapping(value = "/mealItem", consumes = "application/json", produces = "application/json")
     public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
 
-        MealItem newMealItem = null;
+        MealItem newMealItem;
         try {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
