@@ -41,10 +41,16 @@ public class MealMentorController {
 
     @GetMapping("/mealItem/{id}/")
     public ResponseEntity fetchMealItemById(@PathVariable("id") String id) {
-        MealItem foundMealItem = mealPlanService.fetchById(Integer.parseInt(id));
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
+        try {
+            MealItem foundMealItem = mealPlanService.fetchById(Integer.parseInt(id));
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
+        } catch(Exception e) {
+            System.out.println(e);
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     @PostMapping(value = "/mealItem", consumes = "application/json", produces = "application/json")
