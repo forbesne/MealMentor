@@ -114,7 +114,7 @@ public class MealMentorController {
     @ResponseBody
     public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value = "term", required = false, defaultValue = "") String term) {
 
-        List<RecipeLabelValue> allRecipeNames = new ArrayList<RecipeLabelValue>();
+        List<RecipeLabelValue> allRecipeNames = new ArrayList<>();
 
         try {
             List<Recipe> recipes = mealPlanService.fetchRecipes(term);
@@ -126,7 +126,7 @@ public class MealMentorController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return new ArrayList<RecipeLabelValue>();
+            return new ArrayList<>();
         }
 
         return allRecipeNames;
