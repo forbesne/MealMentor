@@ -4,7 +4,6 @@ import com.mealmentor.enterprise.dao.IMealItemDAO;
 import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
-import lombok.SneakyThrows;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +14,6 @@ import java.util.List;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.atLeastOnce;
 import static org.mockito.Mockito.verify;
 
@@ -40,7 +38,7 @@ class EnterpriseApplicationTests {
     }
 
     @Test
-    void saveMealItem_validateReturnMealItemWithLasagnaMondayDinner() throws Exception  {
+    void saveMealItem_validateReturnMealItemWithLasagnaMondayDinner() throws Exception {
         givenRecipeDataAreAvailable();
         whenUserAddsANewMealItemAndSaves();
         thenCreateNewMealItemRecordAndReturnIt();
@@ -82,7 +80,7 @@ class EnterpriseApplicationTests {
     }
 
     @Test
-    void saveDailyCounter_validateReturnDailyCounterWith120Calories() throws Exception  {
+    void saveDailyCounter_validateReturnDailyCounterWith120Calories() throws Exception {
         givenRecipeDataAreAvailable();
         whenUserAddsANewMealItemWithCaloriesAndSaves();
         thenCreateDailyCounterWith120calorieCount();
@@ -105,7 +103,7 @@ class EnterpriseApplicationTests {
     }
 
     @Test
-    void increaseDailyCounter_validateReturnDailyCounterWith370Calories() throws Exception  {
+    void increaseDailyCounter_validateReturnDailyCounterWith370Calories() throws Exception {
         givenRecipeDataAreAvailable();
         givenUserHas120CaloriesInDailyCounter();
         whenUserAddsANewMealItemWith250CaloriesAndSaves();
@@ -126,8 +124,7 @@ class EnterpriseApplicationTests {
         mealItem.setRecipeId(recipe.getId());
         if (Objects.equals(dailyCounter.getDay(), mealItem.getDay())) {
             dailyCounter.setCalorieCount(dailyCounter.getCalorieCount() + recipe.getCalories());
-        }
-        else {
+        } else {
             dailyCounter.setDay(mealItem.getDay());
             dailyCounter.setCalorieCount(recipe.getCalories());
         }
