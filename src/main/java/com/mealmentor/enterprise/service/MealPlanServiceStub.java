@@ -30,22 +30,43 @@ public class MealPlanServiceStub implements IMealPlanService {
         this.mealItemDAO = mealItemDAO;
     }
 
+    /**
+     * Fetch meal item by id
+     * @param id a unique identifier for a MealItem
+     * @return MealItem
+     */
     @Override
     public MealItem fetchById(int id) {
         MealItem foundMealItem = mealItemDAO.fetch(id);
         return foundMealItem;
     }
 
+    /**
+     * Delete meal item of specific id
+     * @param id
+     * @throws Exception
+     */
     @Override
     public void delete(int id) throws Exception {
         mealItemDAO.delete(id);
     }
 
+    /**
+     * Save a meal item
+     * @param mealItem
+     * @return saved meal item
+     * @throws Exception
+     */
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
         return mealItemDAO.save(mealItem);
     }
 
+    /**
+     * Search recipe by name
+     * @param chicken
+     * @return recipe
+     */
     @Override
     public Recipe searchByName(String chicken) {
         Recipe recipe = new Recipe();
@@ -53,16 +74,31 @@ public class MealPlanServiceStub implements IMealPlanService {
         return recipe;
     }
 
+    /**
+     * Fetch all meal items
+     * @return list of meal items
+     */
     @Override
     public List<MealItem> fetchAll() {
         return mealItemDAO.fetchAll();
     }
-  
+
+    /**
+     * Save daily calorie counter
+     * @param dailyCounter
+     * @return daily counter object
+     */
     @Override
     public DailyCounter saveDailyCounter(DailyCounter dailyCounter) {
         return dailyCounter;
     }
 
+    /**
+     * Fetch recipe by name
+     * @param recipeName
+     * @return recipe
+     * @throws IOException
+     */
     @Override
     public List<Recipe> fetchRecipes(String recipeName) throws IOException {
         return recipeDAO.fetchAutocompleteRecipes(recipeName);
