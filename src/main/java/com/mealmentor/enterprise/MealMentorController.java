@@ -47,7 +47,7 @@ public class MealMentorController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
         } catch(Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -61,7 +61,7 @@ public class MealMentorController {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
-            System.out.println("tried to access methods in business logic but failed");
+            throw new Exception("tried to access methods in business logic but failed");
         }
         return newMealItem;
     }
