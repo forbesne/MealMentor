@@ -34,7 +34,7 @@ public class MealMentorController {
 
     @GetMapping("/mealItem")
     @ResponseBody
-    public List<MealItem> fetchAllMealItems(){
+    public List<MealItem> fetchAllMealItems() {
 
         return mealPlanService.fetchAll();
     }
@@ -47,11 +47,11 @@ public class MealMentorController {
         return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
     }
 
-    @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
+    @PostMapping(value = "/mealItem", consumes = "application/json", produces = "application/json")
     public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
 
         MealItem newMealItem = null;
-        try{
+        try {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
@@ -71,8 +71,8 @@ public class MealMentorController {
 
     }
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
-    public String read(Model model){
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String read(Model model) {
         model.addAttribute("recipe", new Recipe());
         return "start";
     }
@@ -80,9 +80,9 @@ public class MealMentorController {
 
     @GetMapping(value = "/searchRecipe")
     @ResponseBody
-    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+    public String searchReceipe(@RequestParam(value = "searchTerm", required = false, defaultValue = "None") String searchTerm, Model model) throws IOException {
         try {
-            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            List<Recipe> recipes = mealPlanService.fetchRecipes(searchTerm);
             model.addAttribute("recipes", recipes);
             return "recipes";
         } catch (IOException e) {
@@ -91,9 +91,10 @@ public class MealMentorController {
         }
 
     }
+
     @RequestMapping("/saveMeal")
-    public String saveMeal(MealItem mealItem){
-        try{
+    public String saveMeal(MealItem mealItem) {
+        try {
             mealPlanService.save(mealItem);
         } catch (Exception e) {
             e.printStackTrace();
@@ -105,25 +106,24 @@ public class MealMentorController {
 
     @GetMapping("/recipeNameAutocomplete")
     @ResponseBody
-    public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {
+    public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value = "term", required = false, defaultValue = "") String term) {
 
-        List <RecipeLabelValue> allRecipeNames= new ArrayList<RecipeLabelValue>();
+        List<RecipeLabelValue> allRecipeNames = new ArrayList<RecipeLabelValue>();
 
-    try {
-        List<Recipe> recipes = mealPlanService.fetchRecipes(term);
-        for (Recipe recipe : recipes)
-        {
-            RecipeLabelValue recipeLabelValue = new RecipeLabelValue();
-            recipeLabelValue.setLabel(recipe.getName());
-            recipeLabelValue.setValue(recipe.getId());
-            allRecipeNames.add(recipeLabelValue);
+        try {
+            List<Recipe> recipes = mealPlanService.fetchRecipes(term);
+            for (Recipe recipe : recipes) {
+                RecipeLabelValue recipeLabelValue = new RecipeLabelValue();
+                recipeLabelValue.setLabel(recipe.getName());
+                recipeLabelValue.setValue(recipe.getId());
+                allRecipeNames.add(recipeLabelValue);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ArrayList<RecipeLabelValue>();
         }
-    } catch (Exception e) {
-        e.printStackTrace();
-        return new ArrayList<RecipeLabelValue>();
-    }
 
-    return allRecipeNames;
+        return allRecipeNames;
 
     }
 
