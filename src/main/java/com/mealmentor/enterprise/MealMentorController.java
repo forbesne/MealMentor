@@ -53,14 +53,14 @@ public class MealMentorController {
     }
 
     @PostMapping(value = "/mealItem", consumes = "application/json", produces = "application/json")
-    public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
+    public MealItem createMealItem(@RequestBody MealItem mealItem) {
 
-        MealItem newMealItem;
+        MealItem newMealItem = null;
         try {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
-            throw new Exception("tried to access methods in business logic but failed");
+            System.out.println("tried to access methods in business logic but failed");
         }
         return newMealItem;
     }
