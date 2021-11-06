@@ -52,7 +52,7 @@ class EnterpriseApplicationTests {
     }
 
     private void whenUserAddsANewMealItemAndSaves() {
-        mealItem.setMealtime("dinner");
+        mealItem.setMealTime("dinner");
         mealItem.setDay("Monday");
         recipe.setId(1);
         recipe.setName("Lasagna");
@@ -89,7 +89,7 @@ class EnterpriseApplicationTests {
     }
 
     private void whenUserAddsANewMealItemWithCaloriesAndSaves() {
-        mealItem.setMealtime("dinner");
+        mealItem.setMealTime("dinner");
         mealItem.setDay("Monday");
         recipe.setName("Lasagna");
         recipe.setCalories(120);
@@ -118,7 +118,7 @@ class EnterpriseApplicationTests {
     }
 
     private void whenUserAddsANewMealItemWith250CaloriesAndSaves() {
-        mealItem.setMealtime("lunch");
+        mealItem.setMealTime("lunch");
         mealItem.setDay("Monday");
         recipe.setName("Pizza");
         recipe.setCalories(250);

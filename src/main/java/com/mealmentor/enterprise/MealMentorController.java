@@ -39,6 +39,11 @@ public class MealMentorController {
         return mealPlanService.fetchAll();
     }
 
+    /**
+     * Fetch a meal item by a unique Id
+     * @param id unique Id
+     * @return meal item with the given Id
+     */
     @GetMapping("/mealItem/{id}/")
     public ResponseEntity fetchMealItemById(@PathVariable("id") String id) {
         MealItem foundMealItem = mealPlanService.fetchById(Integer.parseInt(id));
@@ -47,6 +52,12 @@ public class MealMentorController {
         return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
     }
 
+    /**
+     * Create a new meal item
+     * @param mealItem meal Item object to be created
+     * @return newly created meal item
+     * @throws Exception
+     */
     @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
     public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
 
@@ -60,6 +71,12 @@ public class MealMentorController {
         return newMealItem;
     }
 
+
+    /**
+     * Delete a meal item by a unique Id
+     * @param id Unique Id
+     * @return HTTP status code 200 if successful, 500 if not successfull
+     */
     @DeleteMapping("/mealItem/{id}/")
     public ResponseEntity deleteMealItem(@PathVariable("id") String id) {
         try {
@@ -77,10 +94,16 @@ public class MealMentorController {
         return "start";
     }
 
-
+    /**
+     * Search recipe by the search term
+     * @param searchTerm the search term
+     * @param model model
+     * @return Return user back to the recipes page, with the loaded model object
+     * @throws IOException
+     */
     @GetMapping(value = "/searchRecipe")
     @ResponseBody
-    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+    public String searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
         try {
             List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
             model.addAttribute("recipes", recipes);
@@ -91,6 +114,13 @@ public class MealMentorController {
         }
 
     }
+
+
+    /**
+     * Saves a meal item
+     * @param mealItem meal item
+     * @return Return user back to the start page
+     */
     @RequestMapping("/saveMeal")
     public String saveMeal(MealItem mealItem){
         try{
@@ -103,6 +133,12 @@ public class MealMentorController {
         return "start";
     }
 
+
+    /**
+     * Autocomplete method for jquery autocomplete
+     * @param term term to use for autocomplete
+     * @return  possible recipe list based on the term
+     */
     @GetMapping("/recipeNameAutocomplete")
     @ResponseBody
     public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {

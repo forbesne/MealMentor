@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public class RecipeDAO implements IRecipeDAO {
+
     public List<Recipe> fetchRecipes(String recipeName) throws IOException {
         Retrofit retrofitInstance = RetrofitClientInstance.getRetrofitInstance();
         IRecipeRetrofitDAO recipeRetrofitDAO = retrofitInstance.create(IRecipeRetrofitDAO.class);
@@ -20,6 +21,8 @@ public class RecipeDAO implements IRecipeDAO {
         RecipeCollection recipes = executeRecipes.body();
         return recipes.getRecipeList();
     }
+
+
     public List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException {
         Retrofit retrofitInstance = RetrofitClientInstance.getRetrofitInstance();
         IRecipeAutocompleteRetrofitDAO recipeRetrofitDAO = retrofitInstance.create(IRecipeAutocompleteRetrofitDAO.class);
@@ -28,4 +31,5 @@ public class RecipeDAO implements IRecipeDAO {
         List<Recipe> recipe = executeRecipes.body();
         return recipe;
     }
+
 }

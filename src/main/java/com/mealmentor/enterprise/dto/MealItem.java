@@ -8,7 +8,7 @@ class MealItem {
 
     private int mealId;
     private Integer recipeId;
-    private String mealtime;
+    private String mealTime;
     private String day;
 
 
