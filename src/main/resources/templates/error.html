@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Error Page</title>
   <style>
   p {
@@ -13,6 +14,8 @@
   </style>
 </head>
 <body>
-<p>Sorry we ran into a error</p>
+<h3>Sorry we ran into a error</h3>
+<p  th:text="${error.title}"></p>
+<p th:text="${error.details}"></p>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.mealmentor.enterprise;
 
+import com.mealmentor.enterprise.dto.Error;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.RecipeLabelValue;
 import com.mealmentor.enterprise.service.IMealPlanService;
@@ -16,10 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.mealmentor.enterprise.dto.Recipe;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MealMentorController {
@@ -46,10 +47,16 @@ public class MealMentorController {
      */
     @GetMapping("/mealItem/{id}/")
     public ResponseEntity fetchMealItemById(@PathVariable("id") String id) {
-        MealItem foundMealItem = mealPlanService.fetchById(Integer.parseInt(id));
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-        return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
+
+        try{
+            MealItem foundMealItem = mealPlanService.fetchById(Integer.parseInt(id));
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     /**
@@ -103,14 +110,20 @@ public class MealMentorController {
      */
     @GetMapping(value = "/searchRecipe")
     @ResponseBody
-    public String searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+    public ModelAndView searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+        ModelAndView modelAndView = new ModelAndView();
         try {
             List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
-            model.addAttribute("recipes", recipes);
-            return "recipes";
+            modelAndView.addObject("recipes", recipes);
+            modelAndView.setViewName("recipes");
+            return modelAndView;
+
         } catch (IOException e) {
             e.printStackTrace();
-            return "error";
+            modelAndView = createErrorModelAndView("There was a problem with the search",
+                    "please restart the application and let the admins know if the problem persists");
+            modelAndView.setViewName("error");
+            return modelAndView;
         }
 
     }
@@ -122,15 +135,23 @@ public class MealMentorController {
      * @return Return user back to the start page
      */
     @RequestMapping("/saveMeal")
-    public String saveMeal(MealItem mealItem){
+    public ModelAndView saveMeal(MealItem mealItem){
+
+        ModelAndView modelAndView = new ModelAndView();
+
         try{
             mealPlanService.save(mealItem);
+            modelAndView.setViewName("start");
+
         } catch (Exception e) {
             e.printStackTrace();
-            return "start";
+
+            modelAndView =  createErrorModelAndView("There was a problem saving the meal",
+                    "Please confirm the inputs and try again.");
+            return modelAndView;
 
         }
-        return "start";
+        return modelAndView;
     }
 
 
@@ -161,6 +182,26 @@ public class MealMentorController {
 
     return allRecipeNames;
 
+    }
+
+
+    /**
+     * Receives error details and prepares a ModelAndView object for it.
+     * @param errorTitle
+     * @param errorDetails
+     * @return modelAndView - a populated ModelAndView object
+     */
+    private ModelAndView createErrorModelAndView (String errorTitle, String errorDetails){
+
+        ModelAndView modelAndView = new ModelAndView();
+
+        Error error = new Error();
+        error.setTitle(errorTitle);
+        error.setDetails(errorDetails);
+        modelAndView.setViewName("error");
+        modelAndView.addObject("error", error);
+
+        return modelAndView;
     }
 
 }
