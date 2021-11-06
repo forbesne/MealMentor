@@ -54,6 +54,7 @@ public class MealMentorController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
         }catch (Exception e){
+            e.printStackTrace();
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -63,17 +64,15 @@ public class MealMentorController {
      * Create a new meal item
      * @param mealItem meal Item object to be created
      * @return newly created meal item
-     * @throws Exception
      */
     @PostMapping(value="/mealItem", consumes="application/json", produces="application/json")
-    public MealItem createMealItem(@RequestBody MealItem mealItem) throws Exception {
+    public MealItem createMealItem(@RequestBody MealItem mealItem){
 
         MealItem newMealItem = null;
         try{
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
-            //TODO ADD LOGGING
-            System.out.println("tried to access methods in business logic but failed");
+            e.printStackTrace();
         }
         return newMealItem;
     }
@@ -82,7 +81,7 @@ public class MealMentorController {
     /**
      * Delete a meal item by a unique Id
      * @param id Unique Id
-     * @return HTTP status code 200 if successful, 500 if not successfull
+     * @return HTTP status code 200 if successful, 500 if not successful
      */
     @DeleteMapping("/mealItem/{id}/")
     public ResponseEntity deleteMealItem(@PathVariable("id") String id) {
@@ -90,6 +89,7 @@ public class MealMentorController {
             mealPlanService.delete(Integer.parseInt(id));
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
+            e.printStackTrace();
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -164,7 +164,7 @@ public class MealMentorController {
     @ResponseBody
     public List<RecipeLabelValue> recipeNameAutocomplete(@RequestParam(value="term", required = false, defaultValue="") String term) {
 
-        List <RecipeLabelValue> allRecipeNames= new ArrayList<RecipeLabelValue>();
+        List <RecipeLabelValue> allRecipeNames= new ArrayList<>();
 
     try {
         List<Recipe> recipes = mealPlanService.fetchRecipes(term);
@@ -187,8 +187,8 @@ public class MealMentorController {
 
     /**
      * Receives error details and prepares a ModelAndView object for it.
-     * @param errorTitle
-     * @param errorDetails
+     * @param errorTitle Error Title
+     * @param errorDetails Error Details
      * @return modelAndView - a populated ModelAndView object
      */
     private ModelAndView createErrorModelAndView (String errorTitle, String errorDetails){
