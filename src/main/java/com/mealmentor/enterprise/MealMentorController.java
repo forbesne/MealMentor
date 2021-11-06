@@ -4,6 +4,8 @@ import com.mealmentor.enterprise.dto.Error;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.RecipeLabelValue;
 import com.mealmentor.enterprise.service.IMealPlanService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -24,6 +26,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MealMentorController {
+
+
+    Logger logger = LoggerFactory.getLogger(MealMentorController.class);
 
     @Autowired
     IMealPlanService mealPlanService;
@@ -54,7 +59,7 @@ public class MealMentorController {
             headers.setContentType(MediaType.APPLICATION_JSON);
             return new ResponseEntity(foundMealItem, headers, HttpStatus.OK);
         }catch (Exception e){
-            e.printStackTrace();
+            logger.error("problem in fetchMealItemById.");
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -72,7 +77,7 @@ public class MealMentorController {
         try{
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("problem in createMealItem.");
         }
         return newMealItem;
     }
@@ -89,7 +94,7 @@ public class MealMentorController {
             mealPlanService.delete(Integer.parseInt(id));
             return new ResponseEntity(HttpStatus.OK);
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("problem in deleteMealItem.");
             return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
@@ -119,7 +124,7 @@ public class MealMentorController {
             return modelAndView;
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("problem in searchRecipe.");
             modelAndView = createErrorModelAndView("There was a problem with the search",
                     "please restart the application and let the admins know if the problem persists");
             modelAndView.setViewName("error");
@@ -144,7 +149,7 @@ public class MealMentorController {
             modelAndView.setViewName("start");
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("problem in saveMeal.");
 
             modelAndView =  createErrorModelAndView("There was a problem saving the meal",
                     "Please confirm the inputs and try again.");
@@ -176,7 +181,7 @@ public class MealMentorController {
             allRecipeNames.add(recipeLabelValue);
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        logger.error("problem in recipeNameAutocomplete.");
         return new ArrayList<RecipeLabelValue>();
     }
 
