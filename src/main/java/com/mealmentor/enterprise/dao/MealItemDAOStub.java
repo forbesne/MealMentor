@@ -23,8 +23,7 @@ public class MealItemDAOStub implements IMealItemDAO {
 
     @Override
     public List<MealItem> fetchAll() {
-        List<MealItem> returnsMealItems = new ArrayList<>(allMealItems.values());
-        return returnsMealItems;
+        return new ArrayList<>(allMealItems.values());
     }
 
     @Override

@@ -10,8 +10,6 @@ import java.util.List;
 @Profile({"dev", "default"})
 public class MealItemSQLDAO implements IMealItemDAO {
 
-    MealItemRepository mealItemRepository;
-
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
         return null;

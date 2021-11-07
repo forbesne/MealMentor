@@ -24,13 +24,13 @@ class EnterpriseApplicationTests {
 
     private IMealPlanService mealPlanService;
     private Recipe recipe = new Recipe();
-    private MealItem mealItem = new MealItem();
-    private DailyCounter dailyCounter = new DailyCounter();
-    private Ingredient ingredient = new Ingredient();
-    private RecipeIngredient recipeIngredient = new RecipeIngredient();
-    private List<ShoppingItem> shoppingItemList = new ArrayList<>();
-    private List<MealItem> mealItemList = new ArrayList<>();
-    private List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
+    private final MealItem mealItem = new MealItem();
+    private final DailyCounter dailyCounter = new DailyCounter();
+    private final Ingredient ingredient = new Ingredient();
+    private final RecipeIngredient recipeIngredient = new RecipeIngredient();
+    private final List<ShoppingItem> shoppingItemList = new ArrayList<>();
+    private final List<MealItem> mealItemList = new ArrayList<>();
+    private final List<RecipeIngredient> recipeIngredientList = new ArrayList<>();
 
     @MockBean
     private IMealItemDAO mealItemDAO;
