@@ -123,7 +123,7 @@ public class MealMentorController {
             allRecipeNames.add(recipeLabelValue);
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        log.error("recipeNameAutocomplete :" + e);
         return new ArrayList<RecipeLabelValue>();
     }
 
