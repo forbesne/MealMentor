@@ -15,4 +15,8 @@ public interface IRecipeDAO {
      * requires less points than the complex search
      */
     List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException;
+
+    Recipe fetch(int recipeId);
+
+    Recipe save(Recipe recipe) throws Exception;
 }

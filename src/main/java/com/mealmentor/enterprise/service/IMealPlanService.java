@@ -27,4 +27,7 @@ public interface IMealPlanService {
 
     List<Recipe> fetchRecipes(String recipeName) throws IOException;
 
+    Recipe saveRecipe(Recipe recipe) throws Exception;
+
+    Recipe fetchRecipeById(Integer recipeId);
 }

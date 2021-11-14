@@ -20,9 +20,18 @@ public class MealPlanServiceStub implements IMealPlanService {
     @Autowired
     private IRecipeDAO recipeDAO;
 
+    public MealPlanServiceStub() {
+
+    }
+
     public MealPlanServiceStub(IMealItemDAO mealItemDAO) {
 
         this.mealItemDAO = mealItemDAO;
+    }
+
+    public MealPlanServiceStub(IRecipeDAO recipeDAO) {
+
+        this.recipeDAO = recipeDAO;
     }
 
     @Override
@@ -61,6 +70,16 @@ public class MealPlanServiceStub implements IMealPlanService {
     @Override
     public List<Recipe> fetchRecipes(String recipeName) throws IOException {
         return recipeDAO.fetchAutocompleteRecipes(recipeName);
+    }
+
+    @Override
+    public Recipe saveRecipe(Recipe recipe) throws Exception {
+        return recipeDAO.save(recipe);
+    }
+
+    @Override
+    public Recipe fetchRecipeById(Integer recipeId) {
+        return recipeDAO.fetch(recipeId);
     }
 
 

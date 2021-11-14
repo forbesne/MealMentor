@@ -1,6 +1,7 @@
 package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
+import com.mealmentor.enterprise.dao.IRecipeDAO;
 import com.mealmentor.enterprise.dto.*;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import com.mealmentor.enterprise.service.MealPlanServiceStub;
@@ -34,6 +35,10 @@ class EnterpriseApplicationTests {
 
     @MockBean
     private IMealItemDAO mealItemDAO;
+
+    @MockBean
+    private IRecipeDAO recipeDAO;
+    private List<String> shoppingList = new ArrayList<>();
 
     @Test
     void contextLoads() {
@@ -138,4 +143,51 @@ class EnterpriseApplicationTests {
         assertEquals(370, addedDailyCounter.getCalorieCount());
     }
 
+    @Test
+    void createShoppingList_validateReturnShoppingList() throws Exception {
+        givenNewRecipeDataAreAvailable();
+        givenUserSavedMeals();
+        whenUserGeneratesShoppingList();
+        thenDisplayList();
+    }
+    private void givenNewRecipeDataAreAvailable() throws Exception {
+        Mockito.when(recipeDAO.save(recipe)).thenReturn(recipe);
+        mealPlanService = new MealPlanServiceStub(recipeDAO);
+    }
+    private void givenUserSavedMeals() throws Exception {
+        List<Ingredient> ingredients = new ArrayList<>();
+        Ingredient ingredient = new Ingredient();
+        ingredient.setOriginalString("1 tbsp butter");
+        ingredients.add(ingredient);
+        Ingredient ingredient2 = new Ingredient();
+        ingredient2.setOriginalString("about 2 cups frozen cauliflower florets");
+        ingredients.add(ingredient2);
+
+        recipe.setId(2);
+        recipe.setName("Pasta with chicken");
+        recipe.setIngredients(ingredients);
+        Recipe createdRecipe = mealPlanService.saveRecipe(recipe);
+        Mockito.when(recipeDAO.fetch(2)).thenReturn(createdRecipe);
+        MealItem mealItem = new MealItem();
+        mealItem.setMealId(1);
+        mealItem.setRecipeId(recipe.getId());
+
+        mealItemList.add(mealItem);
+    }
+
+    private void whenUserGeneratesShoppingList() {
+
+        for (MealItem mi : mealItemList) {
+            recipe = mealPlanService.fetchRecipeById(mi.getRecipeId());
+            List<Ingredient> ingredients = recipe.getIngredients();
+            for (Ingredient ingredient : ingredients) {
+                shoppingList.add(ingredient.originalString);
+            }
+
+        }
+    }
+
+    private void thenDisplayList() {
+        assertEquals(2, shoppingList.size());
+    }
 }
