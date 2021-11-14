@@ -3,6 +3,8 @@ package com.mealmentor.enterprise;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.RecipeLabelValue;
 import com.mealmentor.enterprise.service.IMealPlanService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,8 @@ public class MealMentorController {
 
     @Autowired
     IMealPlanService mealPlanService;
+
+    Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
     public String index() {
@@ -55,6 +59,7 @@ public class MealMentorController {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
+            log.error("mealItem :" + e);
             System.out.println("tried to access methods in business logic but failed");
         }
         return newMealItem;
@@ -119,7 +124,7 @@ public class MealMentorController {
             allRecipeNames.add(recipeLabelValue);
         }
     } catch (Exception e) {
-        e.printStackTrace();
+        log.error("recipeNameAutocomplete :" + e);
         return new ArrayList<RecipeLabelValue>();
     }
 
