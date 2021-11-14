@@ -59,6 +59,7 @@ public class MealMentorController {
             newMealItem = mealPlanService.save(mealItem);
         } catch (Exception e) {
             //TODO ADD LOGGING
+            log.error("mealItem :" + e);
             System.out.println("tried to access methods in business logic but failed");
         }
         return newMealItem;
