@@ -1,7 +1,6 @@
 package com.mealmentor.enterprise.dao;
 
 import com.mealmentor.enterprise.dto.Recipe;
-import com.mealmentor.enterprise.dto.RecipeCollection;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import retrofit2.Call;
@@ -14,13 +13,13 @@ import java.util.List;
 @Repository
 @Profile({"dev", "default"})
 public class RecipeDAO implements IRecipeDAO {
-    public List<Recipe> fetchRecipes(String recipeName) throws IOException {
+    public List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException {
         Retrofit retrofitInstance = RetrofitClientInstance.getRetrofitInstance();
         IRecipeRetrofitDAO recipeRetrofitDAO = retrofitInstance.create(IRecipeRetrofitDAO.class);
-        Call<RecipeCollection> allRecipes = recipeRetrofitDAO.getRecipes(recipeName);
-        Response<RecipeCollection> executeRecipes = allRecipes.execute();
-        RecipeCollection recipes = executeRecipes.body();
-        return recipes.getRecipeList();
+        Call<List<Recipe>> allRecipes = recipeRetrofitDAO.getRecipes(recipeIds);
+        Response<List<Recipe>> executeRecipes = allRecipes.execute();
+        List<Recipe> recipes = executeRecipes.body();
+        return recipes;
     }
     public List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException {
         Retrofit retrofitInstance = RetrofitClientInstance.getRetrofitInstance();

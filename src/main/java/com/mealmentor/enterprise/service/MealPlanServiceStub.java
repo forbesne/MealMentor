@@ -82,5 +82,10 @@ public class MealPlanServiceStub implements IMealPlanService {
         return recipeDAO.fetch(recipeId);
     }
 
+    @Override
+    public List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException {
+        return recipeDAO.fetchRecipesInformation(recipeIds);
+    }
+
 
 }

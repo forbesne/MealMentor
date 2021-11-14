@@ -25,7 +25,7 @@ public class RecipeDAOStub implements IRecipeDAO {
         return recipe;
     }
     @Override
-    public List<Recipe> fetchRecipes(String recipeName) throws IOException {
+    public List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException {
         return null;
     }
 

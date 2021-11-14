@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface IRecipeDAO {
     /**
-     * Returns complex search containing all recipe information including ingredients and nutrients
+     * Returns all recipe information including ingredients and nutrients
      */
-    List<Recipe> fetchRecipes(String recipeName) throws IOException;
+    List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
     /**
      * returns id, title, imageType for 10 recipes
      * requires less points than the complex search
