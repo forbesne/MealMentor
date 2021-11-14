@@ -5,6 +5,7 @@ import com.mealmentor.enterprise.dao.IRecipeDAO;
 import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
+import com.mealmentor.enterprise.dto.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -87,5 +88,8 @@ public class MealPlanServiceStub implements IMealPlanService {
         return recipeDAO.fetchRecipesInformation(recipeIds);
     }
 
-
+    @Override
+    public ShoppingList fetchShoppingList(String recipeIds) throws IOException {
+        return recipeDAO.fetchShoppingList(recipeIds);
+    }
 }
