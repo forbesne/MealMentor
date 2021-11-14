@@ -79,7 +79,7 @@ public class MealMentorController {
 
     @GetMapping(value = "/searchRecipe")
     @ResponseBody
-    public String searchReceipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
+    public String searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
         try {
             List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
             model.addAttribute("recipes", recipes);
