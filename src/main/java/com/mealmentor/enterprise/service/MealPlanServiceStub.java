@@ -5,6 +5,7 @@ import com.mealmentor.enterprise.dao.IRecipeDAO;
 import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
+import com.mealmentor.enterprise.dto.ShoppingList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +21,18 @@ public class MealPlanServiceStub implements IMealPlanService {
     @Autowired
     private IRecipeDAO recipeDAO;
 
+    public MealPlanServiceStub() {
+
+    }
+
     public MealPlanServiceStub(IMealItemDAO mealItemDAO) {
 
         this.mealItemDAO = mealItemDAO;
+    }
+
+    public MealPlanServiceStub(IRecipeDAO recipeDAO) {
+
+        this.recipeDAO = recipeDAO;
     }
 
     @Override
@@ -63,5 +73,23 @@ public class MealPlanServiceStub implements IMealPlanService {
         return recipeDAO.fetchAutocompleteRecipes(recipeName);
     }
 
+    @Override
+    public Recipe saveRecipe(Recipe recipe) throws Exception {
+        return recipeDAO.save(recipe);
+    }
 
+    @Override
+    public Recipe fetchRecipeById(Integer recipeId) {
+        return recipeDAO.fetch(recipeId);
+    }
+
+    @Override
+    public List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException {
+        return recipeDAO.fetchRecipesInformation(recipeIds);
+    }
+
+    @Override
+    public ShoppingList fetchShoppingList(String recipeIds) throws IOException {
+        return recipeDAO.fetchShoppingList(recipeIds);
+    }
 }

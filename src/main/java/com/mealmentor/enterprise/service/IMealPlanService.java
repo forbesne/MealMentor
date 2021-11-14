@@ -3,6 +3,7 @@ package com.mealmentor.enterprise.service;
 import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
+import com.mealmentor.enterprise.dto.ShoppingList;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,4 +28,11 @@ public interface IMealPlanService {
 
     List<Recipe> fetchRecipes(String recipeName) throws IOException;
 
+    Recipe saveRecipe(Recipe recipe) throws Exception;
+
+    Recipe fetchRecipeById(Integer recipeId);
+
+    List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
+
+    ShoppingList fetchShoppingList(String recipeIds) throws IOException;
 }

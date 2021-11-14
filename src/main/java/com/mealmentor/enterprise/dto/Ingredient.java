@@ -5,8 +5,17 @@ import lombok.Data;
 
 public @Data
 class Ingredient {
-    private String name;
-    private String unit;
+    @SerializedName("name")
+    public String name;
+    @SerializedName("amount")
+    public Double amount;
+    @SerializedName("unit")
+    public String unit;
+
+    public String toString() {
+        return amount + " " + unit + " " + name;
+    }
+
     @SerializedName("originalString")
     public String originalString;
 }
