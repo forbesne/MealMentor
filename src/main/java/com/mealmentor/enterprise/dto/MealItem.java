@@ -16,6 +16,7 @@ class MealItem {
     private Integer recipeId;
     private String mealtime;
     private String day;
+    private Integer calories;
 
 
     public String getMealItemId() {
