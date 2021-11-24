@@ -32,7 +32,13 @@ public class MealMentorController {
     Logger log = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping("/")
-    public String index() {
+    public String index(Model model) {
+        MealItem mealItem = new MealItem();
+        mealItem.setMealId(1);
+        mealItem.setMealtime("Breakfast");
+        mealItem.setDay("Monday");
+        mealItem.setRecipeId(1);
+        model.addAttribute(mealItem);
         return "start";
     }
 
@@ -82,9 +88,20 @@ public class MealMentorController {
         return "start";
     }
 
+    @GetMapping(value = "/searchRecipe", consumes="application/json", produces="application/json")
+    public ResponseEntity searchRecipeForm(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm) throws IOException {
+        try {
+            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            return new ResponseEntity(recipes, headers, HttpStatus.OK);
+        } catch (IOException e) {
+            e.printStackTrace();
+            return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
+    }
     @GetMapping(value = "/searchRecipe")
-    @ResponseBody
     public String searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
         try {
             List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
@@ -96,7 +113,8 @@ public class MealMentorController {
         }
 
     }
-    @RequestMapping("/saveMeal")
+
+    @GetMapping("/saveMeal")
     public String saveMeal(MealItem mealItem){
         try{
             mealPlanService.save(mealItem);

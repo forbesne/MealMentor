@@ -117,7 +117,8 @@
 </head>
 <body>
 <div th:replace="fragments/topnav :: navbar"></div>
-<form style=" margin-left: 5px;" action="#" th:action="@{/saveMeal}" method="GET">
+<p th:text="${mealItem}" />
+<form style=" margin-left: 5px;" action="#" th:object="${mealItem}" enctype="multipart/form-data"  method="POST">>
     <div id="mealPlan">
         <table class="table table-sm">
             <thead>
@@ -157,6 +158,7 @@
                                     aria-label="Search"
                                     name="searchTerm"
                                     id="Tuesday_Breakfast"
+                                    th:field="*{latitude}"
                             />
                         </div>
                     </div>
