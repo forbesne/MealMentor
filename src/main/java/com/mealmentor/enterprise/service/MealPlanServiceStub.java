@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 public class MealPlanServiceStub implements IMealPlanService {
 
-
+    @Autowired
     private IMealItemDAO mealItemDAO;
 
     @Autowired

@@ -22,6 +22,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MealMentorController {
@@ -36,7 +37,6 @@ public class MealMentorController {
         MealItem mealItem = new MealItem();
         mealItem.setMealId(1);
         mealItem.setMealtime("Breakfast");
-        mealItem.setDay("Monday");
         mealItem.setRecipeId(1);
         model.addAttribute(mealItem);
         return "start";
@@ -114,17 +114,28 @@ public class MealMentorController {
 
     }
 
-    @GetMapping("/saveMeal")
-    public String saveMeal(MealItem mealItem){
+    @PostMapping("/saveMeal")
+    public ModelAndView saveMealTest(@RequestParam(value="receipeId", required = false, defaultValue="") int  receipeId, @RequestParam(value="mealDateTimeId", required = false, defaultValue="") String mealDateTimeId,Model model){
+        ModelAndView modelAndView = new ModelAndView();
+        MealItem mealItem = new MealItem();
+        mealItem.setMealId(1);
+        mealItem.setMealDateTimeId(mealDateTimeId);
+        mealItem.setRecipeId(receipeId);
+        mealItem.setDay("Monday");
+        mealItem.setMealtime("Breakfast");
         try{
             mealPlanService.save(mealItem);
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            model.addAttribute("start", mealItem);
         } catch (Exception e) {
             e.printStackTrace();
-            return "start";
+            modelAndView.setViewName("error");
 
         }
-        return "start";
+        return modelAndView;
     }
+
 
     @GetMapping("/recipeNameAutocomplete")
     @ResponseBody

@@ -109,16 +109,27 @@
                 select: function (event, ui) {
                     this.value = ui.item.label;
                     $("#Recipe_Id").val(ui.item.value);
+                    var receipeId = ui.item.value;
+                    var mealDateTimeId = $(this).attr('id');
+                    saveMealItem(receipeId,mealDateTimeId);
                     return false;
                 },
             });
         });
+
+        function saveMealItem(receipeId,mealDateTimeId){
+            $.ajax({
+                type: "POST",
+                url: "/saveMeal",
+                data:{"receipeId":receipeId,"mealDateTimeId":mealDateTimeId}
+            });
+        }
     </script>
 </head>
 <body>
 <div th:replace="fragments/topnav :: navbar"></div>
 <p th:text="${mealItem}" />
-<form style=" margin-left: 5px;" action="#" th:object="${mealItem}" enctype="multipart/form-data"  method="POST">>
+<form style=" margin-left: 5px;" action="#" >
     <div id="mealPlan">
         <table class="table table-sm">
             <thead>
@@ -145,6 +156,7 @@
                                     aria-label="Search"
                                     name="searchTerm"
                                     id="Monday_Breakfast"
+
                             />
                         </div>
                     </div>
@@ -158,7 +170,6 @@
                                     aria-label="Search"
                                     name="searchTerm"
                                     id="Tuesday_Breakfast"
-                                    th:field="*{latitude}"
                             />
                         </div>
                     </div>
