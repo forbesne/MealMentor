@@ -8,7 +8,21 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(function () {
+      $("#Recipe_Name").autocomplete({
+        source: "recipeNameAutocomplete",
+        minLength: 3,
+        select: function (event, ui) {
+          this.value = ui.item.label;
+          $("#Recipe_Id").val(ui.item.value);
+          return false;
+        },
+      });
+    });
+  </script>
 </head>
+
 <body>
 <div th:replace="fragments/topnav :: navbar"> </div>
 
@@ -17,11 +31,14 @@
 <span class="border border-dark">
 <div id="time"></div>
 </span>
-<div class="banner-section" style="padding-right:70px; float: right">
-  <!-- Recipe image should load from json within the following img tag -->
-  <img class="banner-img" alt="Recipe_Img">
+<br/>
+A list of receipes.
+
+<div class="list-group" th:each="plant : ${recipes}">
+  <a href="#" class="list-group-item list-group-item-action">
+    <p th:text="${recipes}"/>
+  </a>
 </div>
-<div id="ingredients"></div>
 
 
 
