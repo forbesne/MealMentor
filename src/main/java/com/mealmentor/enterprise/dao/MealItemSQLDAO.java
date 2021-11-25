@@ -11,11 +11,7 @@ import java.util.List;
 @Profile({"dev", "default"})
 public class MealItemSQLDAO implements IMealItemDAO {
 
-    private final MealItemRepository mealItemRepository;
-
-    public MealItemSQLDAO(MealItemRepository mealItemRepository) {
-        this.mealItemRepository = mealItemRepository;
-    }
+    MealItemRepository mealItemRepository;
 
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
