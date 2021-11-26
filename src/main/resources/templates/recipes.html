@@ -34,9 +34,9 @@
 <br/>
 A list of receipes.
 
-<div class="list-group" th:each="plant : ${recipes}">
+<div class="list-group" th:each="recipe: ${recipes}">
   <a href="#" class="list-group-item list-group-item-action">
-    <p th:text="${recipes}"/>
+    <p th:text="${recipe}"/>
   </a>
 </div>
 
