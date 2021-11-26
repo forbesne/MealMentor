@@ -98,8 +98,9 @@ public class MealPlanServiceStub implements IMealPlanService {
     }
 
     @Override
-    public int getTotalCalories(DayOfWeek day, List<MealItem> mealItems) {
+    public int getTotalCalories(DayOfWeek day) {
         int totalCalories = 0;
+        List<MealItem> mealItems = mealItemDAO.fetchAll();
         for (MealItem mealItem : mealItems) {
             if (mealItem.getDayOfWeek() == day) {
                 totalCalories += mealItem.getCalories();
