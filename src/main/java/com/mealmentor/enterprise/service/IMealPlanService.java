@@ -6,6 +6,7 @@ import com.mealmentor.enterprise.dto.Recipe;
 import com.mealmentor.enterprise.dto.ShoppingList;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.List;
 
 public interface IMealPlanService {
@@ -35,4 +36,6 @@ public interface IMealPlanService {
     List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
 
     ShoppingList fetchShoppingList(String recipeIds) throws IOException;
+
+    int getTotalCalories(DayOfWeek day, List<MealItem> mealItems);
 }

@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.time.DayOfWeek;
 
 @Entity
 public @Data
@@ -19,6 +20,7 @@ class MealItem {
     private String mealDateTimeId;
     private String day;
     private int calories;
+    private DayOfWeek dayOfWeek;
 
     public String getMealItemId() {
         String mealItemId = "";
