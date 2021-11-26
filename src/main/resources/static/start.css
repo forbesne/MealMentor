@@ -1,0 +1,52 @@
+.navbar-nav > li {
+    padding-left: 70px;
+}
+h2 {
+    color: #2faf9f;
+}
+#two {
+    padding-top: 60px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.Meal {
+    width: 150px;
+}
+.btn {
+    width: 150px;
+}
+@media only screen and (max-width: 1064px) {
+    .Meal {
+        width: 60px;
+    }
+
+    td {
+        width: 10%;
+    }
+
+    th {
+        width: 10%
+    }
+
+    .btn {
+        width: 60px;
+    }
+
+    @media only screen and (max-width: 575px) {
+        .Meal {
+            width: 30%;
+        }
+
+        th {
+            width: 10%
+        }
+
+        td {
+            width: 5%;
+        }
+
+        .btn {
+            width: 30%;
+        }
+    }
+}

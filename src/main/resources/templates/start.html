@@ -35,60 +35,7 @@
     />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <style>
-        .navbar-nav > li {
-            padding-left: 70px;
-        }
-        h2 {
-            color: #2faf9f;
-        }
-        #two {
-            padding-top: 60px;
-            padding-left: 50px;
-            padding-right: 50px;
-        }
-        .Meal {
-            width: 150px;
-        }
-        .btn {
-            width: 150px;
-        }
-        @media only screen and (max-width: 1064px) {
-            .Meal {
-                width: 60px;
-            }
-
-            td {
-                width: 10%;
-            }
-
-            th {
-                width: 10%
-            }
-
-            .btn {
-                width: 60px;
-            }
-
-            @media only screen and (max-width: 575px) {
-                .Meal {
-                    width: 30%;
-                }
-
-                th {
-                    width: 10%
-                }
-
-                td {
-                    width: 5%;
-                }
-
-                .btn {
-                    width: 30%;
-                }
-            }
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" media="all" href="start.css" th:href="@{start.css}" />
     <script type="text/javascript">
         $(function () {
             $("#Recipe_Name").autocomplete({
@@ -628,11 +575,6 @@
             </tr>
             </tbody>
         </table>
-    </div>
-    <div class="col text-center">
-        <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
-            Save
-        </button>
     </div>
     <input
             class="form-control mr-sm-2"
