@@ -18,7 +18,7 @@ class MealItem {
     private String mealtime;
     private String mealDateTimeId;
     private String day;
-
+    private int calories;
 
     public String getMealItemId() {
         String mealItemId = "";

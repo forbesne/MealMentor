@@ -2,10 +2,7 @@ package com.mealmentor.enterprise.service;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
 import com.mealmentor.enterprise.dao.IRecipeDAO;
-import com.mealmentor.enterprise.dto.DailyCounter;
-import com.mealmentor.enterprise.dto.MealItem;
-import com.mealmentor.enterprise.dto.Recipe;
-import com.mealmentor.enterprise.dto.ShoppingList;
+import com.mealmentor.enterprise.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +45,8 @@ public class MealPlanServiceStub implements IMealPlanService {
 
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
+        Nutrition nutrition = recipeDAO.fetchNutrition(mealItem.getRecipeId());
+        mealItem.setCalories(nutrition.getCalories());
         return mealItemDAO.save(mealItem);
     }
 

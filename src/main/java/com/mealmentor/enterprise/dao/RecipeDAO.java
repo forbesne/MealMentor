@@ -1,9 +1,6 @@
 package com.mealmentor.enterprise.dao;
 
-import com.mealmentor.enterprise.dto.Ingredient;
-import com.mealmentor.enterprise.dto.IngredientCollection;
-import com.mealmentor.enterprise.dto.Recipe;
-import com.mealmentor.enterprise.dto.ShoppingList;
+import com.mealmentor.enterprise.dto.*;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 import retrofit2.Call;
@@ -32,6 +29,14 @@ public class RecipeDAO implements IRecipeDAO {
         Response<List<Recipe>> executeRecipes = allRecipes.execute();
         List<Recipe> recipe = executeRecipes.body();
         return recipe;
+    }
+    public Nutrition fetchNutrition(int recipeId) throws IOException {
+        Retrofit retrofitInstance = RetrofitClientInstance.getRetrofitInstance();
+        INutritionRetrofitDAO nutritionRetrofitDAO = retrofitInstance.create(INutritionRetrofitDAO.class);
+        Call<Nutrition> allNutrition = nutritionRetrofitDAO.getNutrition(recipeId);
+        Response<Nutrition> executeRecipes = allNutrition.execute();
+        Nutrition nutrition = executeRecipes.body();
+        return nutrition;
     }
 
     @Override

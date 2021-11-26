@@ -1,5 +1,6 @@
 package com.mealmentor.enterprise.dao;
 
+import com.mealmentor.enterprise.dto.Nutrition;
 import com.mealmentor.enterprise.dto.Recipe;
 import com.mealmentor.enterprise.dto.ShoppingList;
 import org.springframework.context.annotation.Profile;
@@ -28,6 +29,11 @@ public class RecipeDAOStub implements IRecipeDAO {
 
     @Override
     public ShoppingList fetchShoppingList(String recipeIds) throws IOException {
+        return null;
+    }
+
+    @Override
+    public Nutrition fetchNutrition(int recipeId) throws IOException {
         return null;
     }
 

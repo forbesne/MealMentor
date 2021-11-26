@@ -1,5 +1,6 @@
 package com.mealmentor.enterprise.dao;
 
+import com.mealmentor.enterprise.dto.Nutrition;
 import com.mealmentor.enterprise.dto.Recipe;
 import com.mealmentor.enterprise.dto.ShoppingList;
 
@@ -25,4 +26,6 @@ public interface IRecipeDAO {
      * takes multiple recipe ids and converts their ingredients into a shopping list
      */
     ShoppingList fetchShoppingList(String recipeIds) throws IOException;
+
+    Nutrition fetchNutrition(int recipeId) throws IOException;
 }
