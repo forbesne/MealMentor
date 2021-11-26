@@ -35,7 +35,7 @@ public interface IMealPlanService {
 
     List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
 
-    ShoppingList fetchShoppingList(String recipeIds) throws IOException;
+    ShoppingList fetchShoppingList() throws IOException;
 
     int getTotalCalories(DayOfWeek day, List<MealItem> mealItems);
 }
