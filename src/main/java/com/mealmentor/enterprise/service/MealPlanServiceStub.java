@@ -87,7 +87,13 @@ public class MealPlanServiceStub implements IMealPlanService {
     }
 
     @Override
-    public ShoppingList fetchShoppingList(String recipeIds) throws IOException {
+    public ShoppingList fetchShoppingList() throws IOException {
+        String recipeIds = "";
+        List<MealItem> mealItems = mealItemDAO.fetchAll();
+        for (MealItem mealItem : mealItems) {
+                recipeIds += mealItem.getRecipeId() + ",";
+        }
+        recipeIds = recipeIds.substring(0, recipeIds.length() - 1);
         return recipeDAO.fetchShoppingList(recipeIds);
     }
 
