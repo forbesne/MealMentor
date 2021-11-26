@@ -2,10 +2,7 @@ package com.mealmentor.enterprise.service;
 
 import com.mealmentor.enterprise.dao.IMealItemDAO;
 import com.mealmentor.enterprise.dao.IRecipeDAO;
-import com.mealmentor.enterprise.dto.DailyCounter;
-import com.mealmentor.enterprise.dto.MealItem;
-import com.mealmentor.enterprise.dto.Recipe;
-import com.mealmentor.enterprise.dto.ShoppingList;
+import com.mealmentor.enterprise.dto.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
