@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository()
@@ -27,16 +28,21 @@ public class MealItemSQLDAO implements IMealItemDAO {
 
     @Override
     public List<MealItem> fetchAll() {
-        return null;
+        List<MealItem> allMealItems = new ArrayList<>();
+        Iterable<MealItem> mealItems = mealItemRepository.findAll();
+        for (MealItem mealItem : mealItems) {
+            allMealItems.add(mealItem);
+        }
+        return allMealItems;
     }
 
     @Override
     public MealItem fetch(int id) {
-        return null;
+        return mealItemRepository.findById(id).get();
     }
 
     @Override
     public void delete(int id) {
-
+        mealItemRepository.deleteById(id);
     }
 }
