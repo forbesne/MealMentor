@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.List;
 
 @Service
@@ -88,5 +89,16 @@ public class MealPlanServiceStub implements IMealPlanService {
     @Override
     public ShoppingList fetchShoppingList(String recipeIds) throws IOException {
         return recipeDAO.fetchShoppingList(recipeIds);
+    }
+
+    @Override
+    public int getTotalCalories(DayOfWeek day, List<MealItem> mealItems) {
+        int totalCalories = 0;
+        for (MealItem mealItem : mealItems) {
+            if (mealItem.getDayOfWeek() == day) {
+                totalCalories += mealItem.getCalories();
+            }
+        }
+        return totalCalories;
     }
 }
