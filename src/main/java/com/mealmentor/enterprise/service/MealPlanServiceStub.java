@@ -45,8 +45,6 @@ public class MealPlanServiceStub implements IMealPlanService {
 
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
-        Nutrition nutrition = recipeDAO.fetchNutrition(mealItem.getRecipeId());
-        mealItem.setCalories(nutrition.getCalories());
         return mealItemDAO.save(mealItem);
     }
 
