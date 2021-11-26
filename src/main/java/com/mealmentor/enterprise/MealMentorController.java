@@ -2,6 +2,7 @@ package com.mealmentor.enterprise;
 
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.RecipeLabelValue;
+import com.mealmentor.enterprise.dto.ShoppingList;
 import com.mealmentor.enterprise.service.IMealPlanService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +87,20 @@ public class MealMentorController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String read(Model model){
         model.addAttribute("recipe", new Recipe());
+        int MondayCals = mealPlanService.getTotalCalories(DayOfWeek.MONDAY);
+        model.addAttribute("MondayCals", MondayCals);
+        int TuesdayCals = mealPlanService.getTotalCalories(DayOfWeek.TUESDAY);
+        model.addAttribute("TuesdayCals", TuesdayCals);
+        int WednesdayCals = mealPlanService.getTotalCalories(DayOfWeek.WEDNESDAY);
+        model.addAttribute("WednesdayCals", WednesdayCals);
+        int ThursdayCals = mealPlanService.getTotalCalories(DayOfWeek.THURSDAY);
+        model.addAttribute("ThursdayCals", ThursdayCals);
+        int FridayCals = mealPlanService.getTotalCalories(DayOfWeek.FRIDAY);
+        model.addAttribute("FridayCals", FridayCals);
+        int SaturdayCals = mealPlanService.getTotalCalories(DayOfWeek.SATURDAY);
+        model.addAttribute("SaturdayCals", SaturdayCals);
+        int SundayCals = mealPlanService.getTotalCalories(DayOfWeek.SUNDAY);
+        model.addAttribute("SundayCals", SundayCals);
         return "start";
     }
 
@@ -122,6 +138,7 @@ public class MealMentorController {
         mealItem.setMealDateTimeId(mealDateTimeId);
         mealItem.setRecipeId(receipeId);
         mealItem.setDay("Monday");
+        mealItem.setDayOfWeek(DayOfWeek.MONDAY);
         mealItem.setMealtime("Breakfast");
         try{
             mealPlanService.save(mealItem);
