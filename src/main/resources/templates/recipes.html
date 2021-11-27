@@ -60,8 +60,8 @@
 A list of recipes.
 
 <div class="list-group" th:each="recipe: ${recipes}">
-  <a th:href="@{'/recipeById/' + ${recipe.id } + '/'}" class="list-group-item list-group-item-action">
-    <p th:text="${recipe}"/>
+  <a th:href="@{'/recipeById/' + ${recipe.id } + '/'}" class="list-group-item list-group-item-action bottomdiv">
+    <p th:text="${recipe}" style="height: 1px;"/>
   </a>
 </div>
 
