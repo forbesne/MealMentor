@@ -34,7 +34,7 @@
     />
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" type="text/css" media="all" href="start.css" th:href="@{start.css}" />
+    <link rel="stylesheet" type="text/css" media="all" href="../../start.css" th:href="@{../../start.css}" />
     <script type="text/javascript">
         $(function () {
             $("#Recipe_Name").autocomplete({
@@ -52,16 +52,17 @@
 </head>
 
 <body>
-<div id="recipeDetail"></div>
 <div th:replace="fragments/topnav :: navbar"></div>
+<div id="recipeDetail"></div>
 
 <div class="list-group" th:each="recipe: ${recipes}">
-    <p List oF Ingredients ></p>
-    <div class="list-group" th:each="ingredient : ${recipe.ingredients}">
-        <p th:text="${ingredient}"/>
+    <img th:src="${recipe.image}" alt="No image" width="300" height="300" class="imagechange">
+    <div id="t" style="position: absolute;padding-left: 10px;"><p> List oF Ingredients </p>
+    <div class="list-group" th:each="ingredient : ${recipe.ingredients}" >
+        <p th:text="${ingredient}" class="detailsdiv"/>
     </div>
-    <p th:text="${recipe.instructions}"/>
-    <img th:src="${recipe.image}" alt="No image" width="300" height="300">
+    </div>
+    <p th:text="${recipe.instructions}" style="margin-top: 0px;padding-left:10px"/>
 </div>
 
 </body>

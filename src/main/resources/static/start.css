@@ -1,16 +1,49 @@
 .navbar-nav > li {
     padding-left: 70px;
 }
+
 h2 {
     color: #2faf9f;
+}
+
+.navigation:hover{
+    background-color: #2faf9f;
+    border-radius: 15px;
+    padding:3px ;
+
 }
 #two {
     padding-top: 60px;
     padding-left: 50px;
     padding-right: 50px;
 }
+
+.topdiv{
+    background-color: #e3f2fd;
+}
+.bottomdiv:hover{
+    background-color:#2faf9f ;
+}
+.detailsdiv{
+    margin: 1px;
+    padding-left: 10px;
+}
+.imagechange{
+    border-radius: 4px;
+    position: relative;
+    margin-left: 42%;
+    margin-top: 5%;
+}
+.boxman{
+    padding-left: 10px;
+    position: static;
+    margin-top: -330px;
+}
 .Meal {
     width: 150px;
+}
+.row {
+    margin-top: 11px;
 }
 .btn {
     width: 150px;
