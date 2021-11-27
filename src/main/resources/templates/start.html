@@ -55,19 +55,19 @@
                 select: function (event, ui) {
                     this.value = ui.item.label;
                     $("#Recipe_Id").val(ui.item.value);
-                    var receipeId = ui.item.value;
-                    var mealDateTimeId = $(this).attr('id');
-                    saveMealItem(receipeId,mealDateTimeId);
+                    var recipeId = ui.item.value;
+                    var mealId = $(this).attr('id');
+                    saveMealItem(recipeId,mealId, this.value);
                     return false;
                 },
             });
         });
 
-        function saveMealItem(receipeId,mealDateTimeId){
+        function saveMealItem(recipeId,mealId, recipeName){
             $.ajax({
                 type: "POST",
                 url: "/saveMeal",
-                data:{"receipeId":receipeId,"mealDateTimeId":mealDateTimeId}
+                data:{"recipeId":recipeId,"mealId":mealId, "recipeName":recipeName}
             });
         }
     </script>
@@ -101,8 +101,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Monday_Breakfast"
-
+                                    id=11
+                                    th:value="${Meal11}"
                             />
                         </div>
                     </div>
@@ -115,7 +115,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Tuesday_Breakfast"
+                                    id=21
+                                    th:value="${Meal21}"
                             />
                         </div>
                     </div>
@@ -128,7 +129,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Wednesday_Breakfast"
+                                    id=31
+                                    th:value="${Meal31}"
                             />
                         </div>
                     </div>
@@ -141,7 +143,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Thursday_Breakfast"
+                                    id=41
+                                    th:value="${Meal41}"
                             />
                         </div>
                     </div>
@@ -154,7 +157,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Friday_Breakfast"
+                                    id=51
+                                    th:value="${Meal51}"
                             />
                         </div>
                     </div>
@@ -167,7 +171,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Saturday_Breakfast"
+                                    id=61
+                                    th:value="${Meal61}"
                             />
                         </div>
                     </div>
@@ -180,7 +185,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Sunday_Breakfast"
+                                    id=71
+                                    th:value="${Meal71}"
                             />
                         </div>
                     </div>
@@ -196,7 +202,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Monday_Snack_1"
+                                    id=12
+                                    th:value="${Meal12}"
                             />
                         </div>
                     </div>
@@ -209,7 +216,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Tuesday_Snack_1"
+                                    id=22
+                                    th:value="${Meal22}"
                             />
                         </div>
                     </div>
@@ -222,7 +230,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Wednesday_Snack_1"
+                                    id=32
+                                    th:value="${Meal32}"
                             />
                         </div>
                     </div>
@@ -235,7 +244,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Thursday_Snack_1"
+                                    id=42
+                                    th:value="${Meal42}"
                             />
                         </div>
                     </div>
@@ -248,7 +258,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Friday_Snack_1"
+                                    id=52
+                                    th:value="${Meal52}"
                             />
                         </div>
                     </div>
@@ -261,7 +272,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Saturday_Snack_1"
+                                    id=62
+                                    th:value="${Meal62}"
                             />
                         </div>
                     </div>
@@ -274,7 +286,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Sunday_Snack_1"
+                                    id=72
+                                    th:value="${Meal72}"
                             />
                         </div>
                     </div>
@@ -290,7 +303,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Monday_Lunch"
+                                    id=13
+                                    th:value="${Meal13}"
                             />
                         </div>
                     </div>
@@ -303,7 +317,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Tuesday_Lunch"
+                                    id=23
+                                    th:value="${Meal23}"
                             />
                         </div>
                     </div>
@@ -316,7 +331,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Wednesday_Lunch"
+                                    id=33
+                                    th:value="${Meal33}"
                             />
                         </div>
                     </div>
@@ -329,7 +345,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Thursday_Lunch"
+                                    id=43
+                                    th:value="${Meal43}"
                             />
                         </div>
                     </div>
@@ -342,7 +359,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Friday_Lunch"
+                                    id=53
+                                    th:value="${Meal53}"
                             />
                         </div>
                     </div>
@@ -355,7 +373,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Saturday_Lunch"
+                                    id=63
+                                    th:value="${Meal63}"
                             />
                         </div>
                     </div>
@@ -368,7 +387,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Sunday_Lunch"
+                                    id=73
+                                    th:value="${Meal73}"
                             />
                         </div>
                     </div>
@@ -384,7 +404,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Monday_Snack_2"
+                                    id=14
+                                    th:value="${Meal14}"
                             />
                         </div>
                     </div>
@@ -397,7 +418,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Tuesday_Snack_2"
+                                    id=24
+                                    th:value="${Meal24}"
                             />
                         </div>
                     </div>
@@ -410,7 +432,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Wednesday_Snack_2"
+                                    id=34
+                                    th:value="${Meal34}"
                             />
                         </div>
                     </div>
@@ -423,7 +446,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Thursday_Snack_2"
+                                    id=44
+                                    th:value="${Meal44}"
                             />
                         </div>
                     </div>
@@ -436,7 +460,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Friday_Snack_2"
+                                    id=54
+                                    th:value="${Meal54}"
                             />
                         </div>
                     </div>
@@ -449,7 +474,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Saturday_Snack_2"
+                                    id=64
+                                    th:value="${Meal64}"
                             />
                         </div>
                     </div>
@@ -462,7 +488,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Sunday_Snack_2"
+                                    id=74
+                                    th:value="${Meal74}"
                             />
                         </div>
                     </div>
@@ -478,7 +505,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Monday_Dinner"
+                                    id=15
+                                    th:value="${Meal15}"
                             />
                         </div>
                     </div>
@@ -491,7 +519,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Tuesday_Dinner"
+                                    id=25
+                                    th:value="${Meal25}"
                             />
                         </div>
                     </div>
@@ -504,7 +533,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Wednesday_Dinner"
+                                    id=35
+                                    th:value="${Meal35}"
                             />
                         </div>
                     </div>
@@ -517,7 +547,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Thursday_Dinner"
+                                    id=45
+                                    th:value="${Meal45}"
                             />
                         </div>
                     </div>
@@ -530,7 +561,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Friday_Dinner"
+                                    id=55
+                                    th:value="${Meal55}"
                             />
                         </div>
                     </div>
@@ -543,7 +575,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Saturday_Dinner"
+                                    id=65
+                                    th:value="${Meal65}"
                             />
                         </div>
                     </div>
@@ -556,7 +589,8 @@
                                     type="search"
                                     aria-label="Search"
                                     name="searchTerm"
-                                    id="Sunday_Dinner"
+                                    id=75
+                                    th:value="${Meal75}"
                             />
                         </div>
                     </div>
