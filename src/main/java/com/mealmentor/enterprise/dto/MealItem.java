@@ -16,14 +16,7 @@ class MealItem {
     private int mealId;
     private Integer recipeId;
     private String recipeName;
-    private String mealtime;
-    private String mealDateTimeId;
-    private String day;
     private int calories;
     private DayOfWeek dayOfWeek;
 
-    public String getMealItemId() {
-        String mealItemId = "";
-        return mealItemId;
-    }
 }

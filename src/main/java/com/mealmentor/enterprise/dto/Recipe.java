@@ -13,8 +13,6 @@ class Recipe {
     private String name;
     @SerializedName("dishTypes")
     public List<String> dishTypes;
-    private int calories;
-    private List<RecipeIngredient> recipeIngredientList;
     @SerializedName("readyInMinutes")
     public Integer readyInMinutes;
     @SerializedName("servings")

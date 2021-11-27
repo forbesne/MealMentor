@@ -38,7 +38,6 @@ public class MealMentorController {
     public String index(Model model) {
         MealItem mealItem = new MealItem();
         mealItem.setMealId(1);
-        mealItem.setMealtime("Breakfast");
         mealItem.setRecipeId(1);
         model.addAttribute(mealItem);
         return "start";
@@ -87,20 +86,11 @@ public class MealMentorController {
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String read(Model model){
         model.addAttribute("recipe", new Recipe());
-        int MondayCals = mealPlanService.getTotalCalories(DayOfWeek.MONDAY);
-        model.addAttribute("MondayCals", MondayCals);
-        int TuesdayCals = mealPlanService.getTotalCalories(DayOfWeek.TUESDAY);
-        model.addAttribute("TuesdayCals", TuesdayCals);
-        int WednesdayCals = mealPlanService.getTotalCalories(DayOfWeek.WEDNESDAY);
-        model.addAttribute("WednesdayCals", WednesdayCals);
-        int ThursdayCals = mealPlanService.getTotalCalories(DayOfWeek.THURSDAY);
-        model.addAttribute("ThursdayCals", ThursdayCals);
-        int FridayCals = mealPlanService.getTotalCalories(DayOfWeek.FRIDAY);
-        model.addAttribute("FridayCals", FridayCals);
-        int SaturdayCals = mealPlanService.getTotalCalories(DayOfWeek.SATURDAY);
-        model.addAttribute("SaturdayCals", SaturdayCals);
-        int SundayCals = mealPlanService.getTotalCalories(DayOfWeek.SUNDAY);
-        model.addAttribute("SundayCals", SundayCals);
+        int[] totalCals = mealPlanService.getTotalCalories();
+        for (int i=0; i<totalCals.length; i++)
+        {
+            model.addAttribute("Cals" + String.valueOf(i), totalCals[i]);
+        }
 
         List<MealItem> meals = mealPlanService.fetchAll();
         for (MealItem meal:meals) {
@@ -145,7 +135,6 @@ public class MealMentorController {
         mealItem.setRecipeName(recipeName);
         DayOfWeek day = DayOfWeek.of(Integer.parseInt(mealId.substring(0,1)));
         mealItem.setDayOfWeek(day);
-
         try{
             mealPlanService.save(mealItem);
             HttpHeaders headers = new HttpHeaders();
@@ -156,6 +145,7 @@ public class MealMentorController {
             modelAndView.setViewName("error");
 
         }
+        read(model);
         return modelAndView;
     }
 
@@ -204,6 +194,7 @@ public class MealMentorController {
             e.printStackTrace();
         }
         model.addAttribute("mealItems", mealItems);
+        read(model);
         return "start";
     }
 

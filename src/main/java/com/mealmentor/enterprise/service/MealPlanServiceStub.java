@@ -60,11 +60,6 @@ public class MealPlanServiceStub implements IMealPlanService {
     public List<MealItem> fetchAll() {
         return mealItemDAO.fetchAll();
     }
-  
-    @Override
-    public DailyCounter saveDailyCounter(DailyCounter dailyCounter) {
-        return dailyCounter;
-    }
 
     @Override
     public List<Recipe> fetchRecipes(String recipeName) throws IOException {
@@ -98,13 +93,11 @@ public class MealPlanServiceStub implements IMealPlanService {
     }
 
     @Override
-    public int getTotalCalories(DayOfWeek day) {
-        int totalCalories = 0;
+    public int[] getTotalCalories() {
+        int[] totalCalories = new int[8];
         List<MealItem> mealItems = mealItemDAO.fetchAll();
         for (MealItem mealItem : mealItems) {
-            if (mealItem.getDayOfWeek() == day) {
-                totalCalories += mealItem.getCalories();
-            }
+            totalCalories[mealItem.getDayOfWeek().getValue()] += mealItem.getCalories();
         }
         return totalCalories;
     }

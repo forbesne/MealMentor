@@ -7,8 +7,6 @@ import java.util.List;
 
 public @Data
 class Nutrition {
-    @SerializedName("nutrients")
-    public List<Nutrient> nutrients;
     @SerializedName("calories")
     public String calories;
     @SerializedName("carbs")
