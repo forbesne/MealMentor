@@ -6,7 +6,7 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-    <title>Shopping List</title>
+    <title>Recipe Details</title>
     <link
             rel="stylesheet"
             href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -48,25 +48,20 @@
             });
         });
     </script>
+
 </head>
+
 <body>
+<div id="recipeDetail"></div>
 <div th:replace="fragments/topnav :: navbar"></div>
 
-<h3>This week's shopping list:</h3>
-
-<div class="list-group" th:each="aisle : ${shoppingList.aisles}">
-    <a class="list-group-item list-group-item-action">
-        <p th:text="${aisle.aisle}"/>
-        <div class="list-group" th:each="item : ${aisle.items}">
-            <a class="list-group-item list-group-item-action">
-                <p th:text="${item.name}"/>
-                <p th:text="${item.measures.metric.amount}"/>
-                <p th:text="${item.measures.metric.unit}"/>
-            </a>
-        </div>
-    </a>
+<div class="list-group" th:each="recipe: ${recipes}">
+    <p List oF Ingredients ></p>
+    <div class="list-group" th:each="ingredient : ${recipe.ingredients}">
+        <p th:text="${ingredient}"/>
+    </div>
+    <p th:text="${recipe.instructions}"/>
 </div>
-
 
 </body>
 </html>

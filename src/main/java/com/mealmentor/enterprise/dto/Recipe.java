@@ -23,9 +23,10 @@ class Recipe {
     public List<Ingredient> ingredients;
     @SerializedName("nutrition")
     public Nutrition nutrition;
-
+    @SerializedName("instructions")
+    public String instructions;
     public String toString ()
     {
-        return name + " " +dishTypes+ " " + calories + " " + id;
+        return name + " " + id;
     }
 }
