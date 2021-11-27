@@ -25,6 +25,12 @@ class Recipe {
     public Nutrition nutrition;
     @SerializedName("instructions")
     public String instructions;
+    @SerializedName("sourceUrl")
+    public String sourceUrl;
+    @SerializedName("image")
+    public String image;
+    @SerializedName("imageType")
+    public String imageType;
     public String toString ()
     {
         return name + " " + id;
