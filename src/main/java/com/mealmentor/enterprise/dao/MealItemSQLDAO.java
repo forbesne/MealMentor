@@ -16,7 +16,10 @@ public class MealItemSQLDAO implements IMealItemDAO {
     @Autowired
     private IRecipeDAO recipeDAO;
 
-    MealItemRepository mealItemRepository;
+    private final MealItemRepository mealItemRepository;
+    public MealItemSQLDAO(MealItemRepository mealItemRepository) {
+        this.mealItemRepository = mealItemRepository;
+    }
 
     @Override
     public MealItem save(MealItem mealItem) throws Exception {
