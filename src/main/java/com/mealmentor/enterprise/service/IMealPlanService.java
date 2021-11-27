@@ -1,12 +1,10 @@
 package com.mealmentor.enterprise.service;
 
-import com.mealmentor.enterprise.dto.DailyCounter;
 import com.mealmentor.enterprise.dto.MealItem;
 import com.mealmentor.enterprise.dto.Recipe;
 import com.mealmentor.enterprise.dto.ShoppingList;
 
 import java.io.IOException;
-import java.time.DayOfWeek;
 import java.util.List;
 
 public interface IMealPlanService {
@@ -25,8 +23,6 @@ public interface IMealPlanService {
 
     List<MealItem> fetchAll();
 
-    DailyCounter saveDailyCounter(DailyCounter dailyCounter);
-
     List<Recipe> fetchRecipes(String recipeName) throws IOException;
 
     Recipe saveRecipe(Recipe recipe) throws Exception;
@@ -37,5 +33,5 @@ public interface IMealPlanService {
 
     ShoppingList fetchShoppingList() throws IOException;
 
-    int getTotalCalories(DayOfWeek day);
+    int[] getTotalCalories();
 }
