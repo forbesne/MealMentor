@@ -101,6 +101,12 @@ public class MealMentorController {
         model.addAttribute("SaturdayCals", SaturdayCals);
         int SundayCals = mealPlanService.getTotalCalories(DayOfWeek.SUNDAY);
         model.addAttribute("SundayCals", SundayCals);
+
+        List<MealItem> meals = mealPlanService.fetchAll();
+        for (MealItem meal:meals) {
+            model.addAttribute("Meal" + String.valueOf(meal.getMealId()), meal.getRecipeName());
+        }
+
         return "start";
     }
 
@@ -131,15 +137,15 @@ public class MealMentorController {
     }
 
     @PostMapping("/saveMeal")
-    public ModelAndView saveMealTest(@RequestParam(value="receipeId", required = false, defaultValue="") int  receipeId, @RequestParam(value="mealDateTimeId", required = false, defaultValue="") String mealDateTimeId,Model model){
+    public ModelAndView saveMealTest(@RequestParam(value="recipeId", required = false, defaultValue="") int  recipeId, @RequestParam(value="mealId", required = false, defaultValue="") String mealId, @RequestParam(value="recipeName", required = false, defaultValue="") String recipeName,Model model){
         ModelAndView modelAndView = new ModelAndView();
         MealItem mealItem = new MealItem();
-        mealItem.setMealId(1);
-        mealItem.setMealDateTimeId(mealDateTimeId);
-        mealItem.setRecipeId(receipeId);
-        mealItem.setDay("Monday");
-        mealItem.setDayOfWeek(DayOfWeek.MONDAY);
-        mealItem.setMealtime("Breakfast");
+        mealItem.setMealId(Integer.parseInt(mealId));
+        mealItem.setRecipeId(recipeId);
+        mealItem.setRecipeName(recipeName);
+        DayOfWeek day = DayOfWeek.of(Integer.parseInt(mealId.substring(0,1)));
+        mealItem.setDayOfWeek(day);
+
         try{
             mealPlanService.save(mealItem);
             HttpHeaders headers = new HttpHeaders();

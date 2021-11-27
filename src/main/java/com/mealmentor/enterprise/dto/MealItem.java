@@ -13,9 +13,9 @@ public @Data
 class MealItem {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int mealId;
     private Integer recipeId;
+    private String recipeName;
     private String mealtime;
     private String mealDateTimeId;
     private String day;
