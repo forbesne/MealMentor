@@ -177,5 +177,40 @@ public class MealMentorController {
     return allRecipeNames;
 
     }
+    @GetMapping("/shoppingList")
+    public String displayShoppingList (Model model) throws IOException{
+        ShoppingList shoppingList= null;
+        try {
+            shoppingList =mealPlanService.fetchShoppingList();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("shoppingList", shoppingList);
+        return "shoppingList";
+    }
+
+    @GetMapping("/home")
+    public String displayWeekyMeal (Model model) throws IOException{
+        List <MealItem> mealItems= null;
+        try {
+            mealItems = mealPlanService.fetchAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        model.addAttribute("mealItems", mealItems);
+        return "start";
+    }
+
+    @GetMapping(value = "/recipeById/{recipe.id }")
+    public ModelAndView fetchRecipeById(@PathVariable("recipe.id ") String recipeId ) throws IOException {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("recipeDetails");
+        List<Recipe> recipes = mealPlanService.fetchRecipesInformation(recipeId);
+        modelAndView.addObject("recipes", recipes);
+        return  modelAndView;
+
+    }
+
+
 
 }
