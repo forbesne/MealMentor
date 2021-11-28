@@ -56,11 +56,9 @@
 
 <div class="list-group" th:each="aisle : ${shoppingList.aisles}">
     <a class="list-group-item list-group-item-action topdiv" >
-        <p th:text="${aisle.aisle} " style="height: 5px"/>
+        <p th:text="${aisle.aisle+ ':'} " style="height: 5px; font-weight: bold;"/>
         <div class="list-group" th:each="item : ${aisle.items}">
-            <a class="list-group-item list-group-item-action ">
-                <p th:text="${item.name+ ':  '+item.measures.metric.amount+' '+item.measures.metric.unit}" style="height: 1px;" />
-            </a>
+                <p th:text="${item.name+ ':  '+item.measures.metric.amount+' '+item.measures.metric.unit}" style="height: 4px;" />
         </div>
     </a>
 </div>

@@ -55,10 +55,11 @@ h2 {
 
     td {
         width: 10%;
+        justify-content: center;
     }
 
     th {
-        width: 10%
+        width: 10%;
     }
 
     .btn {
@@ -71,11 +72,12 @@ h2 {
         }
 
         th {
-            width: 10%
+            width: 10%;
         }
 
         td {
             width: 5%;
+            justify-content: center;
         }
 
         .btn {

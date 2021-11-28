@@ -79,7 +79,7 @@
     <div id="mealPlan">
         <table class="table table-sm">
             <thead>
-            <tr style="line-height: 40px;background-color: coral;border-radius: 25px;">
+            <tr style="line-height: 40px;background-color: cadetblue;border-radius: 25px;">
                 <th scope="col"></th>
                 <th scope="col">Monday</th>
                 <th scope="col">Tuesday</th>
@@ -193,6 +193,7 @@
                 </td>
             </tr>
             <tr>
+            <tr style="line-height: 60px">
                 <th scope="row">Snack</th>
                 <td>
                     <div class="mealrow form-group row">
@@ -596,15 +597,92 @@
                     </div>
                 </td>
             </tr>
-            <tr style="line-height: 40px;background-color:cadetblue">
+            <tr style="line-height: 60px;background-color:cadetblue">
                 <th scope="row">Total Calories</th>
-                <td><p th:text="${Cals1}" /></td>
-                <td><p th:text="${Cals2}" /></td>
-                <td><p th:text="${Cals3}" /></td>
-                <td><p th:text="${Cals4}" /></td>
-                <td><p th:text="${Cals5}" /></td>
-                <td><p th:text="${Cals6}" /></td>
-                <td><p th:text="${Cals7}" /></td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                    <input
+                            class="Meal form-control mr-sm-2"
+                            type="text"
+                            th:value="${Cals1}"
+                            readonly
+                    />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals2}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals3}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals4}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals5}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals6}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="mealrow form-group row">
+                        <div class="col-xs-3">
+                            <input
+                                    class="Meal form-control mr-sm-2"
+                                    type="text"
+                                    th:value="${Cals7}"
+                                    readonly
+                            />
+                        </div>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
