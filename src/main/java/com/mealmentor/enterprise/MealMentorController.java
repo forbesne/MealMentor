@@ -29,10 +29,12 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class MealMentorController {
 
+    Logger log = LoggerFactory.getLogger(this.getClass());
+
     @Autowired
     IMealPlanService mealPlanService;
 
-    Logger log = LoggerFactory.getLogger(this.getClass());
+
 
     @RequestMapping("/")
     public String index(Model model) {
@@ -148,8 +150,9 @@ public class MealMentorController {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
             model.addAttribute("start", mealItem);
+            log.info("success:");
         } catch (Exception e) {
-            e.printStackTrace();
+           log.error("saveMeal:" + e.getMessage());
             modelAndView.setViewName("error");
 
         }
@@ -174,7 +177,7 @@ public class MealMentorController {
             allRecipeNames.add(recipeLabelValue);
         }
     } catch (Exception e) {
-        log.error("recipeNameAutocomplete :" + e);
+        log.error("recipeNameAutocomplete :" + e.getMessage());
         return new ArrayList<RecipeLabelValue>();
     }
 
@@ -199,7 +202,7 @@ public class MealMentorController {
         try {
             mealItems = mealPlanService.fetchAll();
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Home :" + e.getMessage());
         }
         model.addAttribute("mealItems", mealItems);
         read(model);
