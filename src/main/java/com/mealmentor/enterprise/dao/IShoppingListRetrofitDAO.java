@@ -9,6 +9,6 @@ import retrofit2.http.POST;
 
 public interface IShoppingListRetrofitDAO {
     @Headers("Content-Type: application/json")
-    @POST("/mealplanner/shopping-list/compute?apiKey=0cea569c323f45d090b3335b48f39341")
+    @POST("/mealplanner/shopping-list/compute?apiKey=1267976c3ea54d019cd319ddae5b7093")
     Call<ShoppingList> getShoppingList(@Body IngredientCollection shoppingList);
 }
