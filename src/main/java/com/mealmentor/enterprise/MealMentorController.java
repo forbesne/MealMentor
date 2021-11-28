@@ -116,7 +116,15 @@ public class MealMentorController {
     @GetMapping(value = "/searchRecipe")
     public String searchRecipe(@RequestParam(value="searchTerm", required=false, defaultValue="None")  String searchTerm, Model model) throws IOException {
         try {
-            List<Recipe> recipes= mealPlanService.fetchRecipes(searchTerm);
+            List<Recipe> recipesList = mealPlanService.fetchRecipes(searchTerm);
+            String recipeIds = "";
+            for (Recipe recipe : recipesList) {
+                recipeIds += recipe.getId() + ",";
+            }
+            recipeIds = recipeIds.substring(0, recipeIds.length() - 1);
+            List<Recipe> recipes = mealPlanService.fetchRecipesInformation(recipeIds);
+            model.addAttribute("searchTerm", "Recipe results for '" + searchTerm + "'");
+
             model.addAttribute("recipes", recipes);
             return "recipes";
         } catch (IOException e) {

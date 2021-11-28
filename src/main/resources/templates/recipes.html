@@ -57,11 +57,13 @@
 <div id="recipeName"></div>
 
 <br/>
-A list of recipes.
+<p th:text="${searchTerm}" style="padding-left: 10px;"/>
 
 <div class="list-group" th:each="recipe: ${recipes}">
   <a th:href="@{'/recipeById/' + ${recipe.id } + '/'}" class="list-group-item list-group-item-action bottomdiv">
-    <p th:text="${recipe}" style="height: 1px;"/>
+    <p th:text="${recipe.name}" style="height: 10px; font-weight: bold; font-size: larger;"/>
+    <p th:text="'Ready in: ' + ${recipe.readyInMinutes} + ' minutes'" style="height: 2px;"/>
+    <p th:text="'Serves: ' + ${recipe.servings}" style="height: 2px;"/>
   </a>
 </div>
 
