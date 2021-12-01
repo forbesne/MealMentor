@@ -2,7 +2,7 @@
 ---
 ## Introduction
 
-Meal Mentor allows users to create a weekly meal plan. They can search through a variety of recipes or add their own.
+Meal Mentor allows users to create a weekly meal plan. They can search through a variety of recipes and find the ingredients list and instructions.
 
 Nutritional information is provided and allows users to track their daily calories.
 
@@ -57,8 +57,8 @@ Meal Mentor creates a shopping list for the user based on the items they will ne
   **Then**: The user will see an error, indicating no items in shopping list.
 
 ## Class Diagram
+![class diagram](https://user-images.githubusercontent.com/64596547/144326577-db9eb4c1-ceb1-4131-b89c-0771e85be93b.JPG)
 
-![MealMentorClassDiagram drawio (1)](https://user-images.githubusercontent.com/64596547/132994962-6ce528e7-8ca5-4cb7-8161-38a801aaebc3.png)
 ## Class Diagram Description
 
 **com.mealmentor.enterprise**
