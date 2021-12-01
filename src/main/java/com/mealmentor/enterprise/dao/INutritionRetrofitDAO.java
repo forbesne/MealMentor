@@ -6,6 +6,9 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface INutritionRetrofitDAO {
+    /**
+     * returns the nutrition for one recipe from Spoonacular
+     */
     @GET("/recipes/{id}/nutritionWidget.json?apiKey=0cea569c323f45d090b3335b48f39341")
     Call<Nutrition> getNutrition(@Path("id") int recipeId);
 }
