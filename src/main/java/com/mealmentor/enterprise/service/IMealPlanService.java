@@ -9,12 +9,13 @@ import java.util.List;
 
 public interface IMealPlanService {
     /**
-     * Fetch a specimen with a given ID
-     * @param id a unique identifier for a MealItem
-     * @return the matching MealItem, or null if no matches found
+     * Fetch a meal with a given ID
      */
     MealItem fetchById(int id);
 
+    /**
+     * save a meal item to the database
+     */
     MealItem save(MealItem mealItem) throws Exception;
 
     Recipe searchByName(String chicken);
@@ -23,6 +24,9 @@ public interface IMealPlanService {
 
     List<MealItem> fetchAll();
 
+    /**
+     * used for recipe autocomplete
+     */
     List<Recipe> fetchRecipes(String recipeName) throws IOException;
 
     Recipe saveRecipe(Recipe recipe) throws Exception;
@@ -31,7 +35,13 @@ public interface IMealPlanService {
 
     List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
 
+    /**
+     * compute shopping list based on meals in the database
+     */
     ShoppingList fetchShoppingList() throws IOException;
 
+    /**
+     * calculate calories for each day of the week
+     */
     int[] getTotalCalories();
 }

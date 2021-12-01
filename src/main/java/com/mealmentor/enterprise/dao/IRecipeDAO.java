@@ -14,7 +14,7 @@ public interface IRecipeDAO {
     List<Recipe> fetchRecipesInformation(String recipeIds) throws IOException;
     /**
      * returns id, title, imageType for 10 recipes
-     * requires less points than the complex search
+     * requires fewer points than the complex search
      */
     List<Recipe> fetchAutocompleteRecipes(String recipeName) throws IOException;
 
@@ -27,5 +27,8 @@ public interface IRecipeDAO {
      */
     ShoppingList fetchShoppingList(String recipeIds) throws IOException;
 
+    /**
+     * fetches Nutrition for one recipe
+     */
     Nutrition fetchNutrition(int recipeId) throws IOException;
 }

@@ -8,6 +8,9 @@ import retrofit2.http.Query;
 import java.util.List;
 
 public interface IRecipeRetrofitDAO {
+    /**
+     * returns all the recipe information for a list of recipes
+     */
     @GET("/recipes/informationBulk?apiKey=0cea569c323f45d090b3335b48f39341&includeNutrition=true")
     Call<List<Recipe>> getRecipes(@Query("ids") String idList);
 }
